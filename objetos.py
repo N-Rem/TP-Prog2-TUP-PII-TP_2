@@ -67,6 +67,15 @@ class Curso (Estudiante, Profesor):
 
 # !__________funciones___________
 
+def mostrar_alumno():
+    pass
+
+def mostrar_prof():
+    pass
+
+def mostrar_cursos():
+    pass
+
 
 def Buscar_alumno():
     return str
