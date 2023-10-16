@@ -18,7 +18,7 @@ class Usuario():
     #!get-set Apellido-----------  
     def get_apellido(self):
         return self.__apellido
-    def set_nombre(self, apellido=str):
+    def set_apellido(self, apellido=str):
         self.__apellido = apellido
     #!get-set email
     def get_email(self):
@@ -54,14 +54,14 @@ class Estudiante(Usuario):
         return "Estudiante: " + super().__str__() + f", Legajo = {self.__legajo}, Año Inscripcion en la Carrera = {self.__anio_inscripcion_carrera}"
 
     def Matricular_en_curso(self, curso: object, contrasenia=str, ):
-        if not (busca_curso(self.__mis_cursos, curso.__nombre)):
-            if (contrasenia == curso.__contrasenia_matriculacion):
+        if not(busca_curso(self.get_mis_cursos(), curso.get_nombre())):
+            if (contrasenia == curso.get_contrasenia()):
                 self.__mis_cursos.append(curso)
-                print(f"Usted de Matriculo en {curso.__nombre}")
+                print(f"Usted de Matriculo en {curso.get_nombre()}")
             else:
                 print("Contraseña no valida..")
         else:
-            print(f"Usted ya esta anotado en {curso.__nombre}")
+            print(f"Usted ya esta anotado en {curso.get_nombre()}")
 
 #--
 def busca_curso(lista=list, nombre=str):
@@ -108,14 +108,15 @@ class Curso (Estudiante, Profesor):
         return self.__nombre
     def set_nombre(self, nombre=str):
         self.__nombre = nombre
+    
+    def get_contrasenia (self):
+        return self.__contrasenia_matriculacion
         
     def get_archivos(self):
         return self.__archivos
     def set_archivos(self, archivos =str):
         self.__archivos.append(archivos)
 
-
-    
     def __str__(self):
         return f"Curso: Nombre = {self.__nombre}, Contraseña de Matriculacion = {self.__contrasenia_matriculacion}"
 
@@ -125,18 +126,19 @@ class Curso (Estudiante, Profesor):
         
 # !__________funciones___________
 def mostrar_listas(lista = list):
-    for valor, i in enumerate(lista):
-        print(f"{i+1}. {valor}\n")
+    for i,valor in enumerate(lista):
+        print(f"{i+1}. {valor.get_nombre()}\n")
         
 def mostrar_mis_cursos(lista_objetos = list, indice = int):
     mis_cursos = lista_objetos[indice].get_mis_cursos()
     mostrar_listas(mis_cursos)
 
 def buscar_usuario(lista = list, email = str):
-    for valor, indice in enumerate(lista): 
-        if valor.get_email() == email:
+    for indice, valor in enumerate(lista): 
+        objeto_lista = valor.get_email()
+        if objeto_lista == email:
           return True, indice
-        else: return False
+    return False, 0
     
 def mostrar_cursos(lista = list):
     for i in lista: 
@@ -151,10 +153,12 @@ print("\n")
 
 alumno_uno = Estudiante("Lautaro", "Vega", "Lautaro.vega@gmail.com", "2424a", 5858, 2023)
 alumno_dos = Estudiante("Maria", "Perez", "Maria.perez@gmail.com", "1234a", 5050, 2022)
-alumno_tres = Estudiante("Victoria", "Garcia", "Lautaro.vega@gmail.com", "2444a", 3030, 2023)
+alumno_tres = Estudiante("Victoria", "Garcia", "Vicky.gar@gmail.com", "2444a", 3030, 2023)
 alumnos_registrados.append(alumno_uno)
 alumnos_registrados.append(alumno_dos)
 alumnos_registrados.append(alumno_tres)
+print(alumno_tres.get_email())
+
 
 prof_uno = Profesor("Gustavo", "Ramirez","Gustavo.Ramirez@gmail.com", "3883a", "Ingeniero", 2005)
 prof_dos = Profesor("Bettiana", "apellidoRaro","bettiana.123@gmail.com", "1010a", "Ingeniera", 2000)
