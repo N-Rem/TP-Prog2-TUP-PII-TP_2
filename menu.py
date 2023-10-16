@@ -5,8 +5,6 @@ op = input(
 
 if (op.isdigit()):
     op = int(op)
-    #!porfesor--------
-
     if (op == 1):
         print("\n\t\t--Ingresar Alumno--\n\n")
         mail = input("Ingrese su E-mail: ")
@@ -49,7 +47,6 @@ if (op.isdigit()):
                 print("Debe ser un numero entero")
         else:
             print("Error de ingreso.")
-            #!porfesor--------
     elif (op == 2):
         print("\n\t\t--Ingresar Profesor--\n\n")
         mail = input("Ingrese su E-mail: ")
@@ -92,11 +89,11 @@ if (op.isdigit()):
         else:
             print("Error de ingreso.")
 
-    #!-----------
+    #!------Op Tres, lsito-----
 
     elif (op == 3):
         print("\n\t\t--Ver Curso--")
-        "lista de los cursos."
+        ob.mostrar_cursos(ob.lista_cursos)
 
     elif (op == 4):
         print("\n\t\t--Salir--")

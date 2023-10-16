@@ -9,7 +9,23 @@ class Usuario():
         self.__apellido = apellido
         self.__email = email
         self.__contrasenia = contrasenia
-
+    
+    #!get-set Nombre---------
+    def get_nombre(self):
+        return self.__nombre
+    def set_nombre(self, nombre=str):
+        self.__nombre = nombre
+    #!get-set Apellido-----------  
+    def get_apellido(self):
+        return self.__apellido
+    def set_nombre(self, apellido=str):
+        self.__apellido = apellido
+    #!get-set email
+    def get_email(self):
+        return self.__email
+    def set_email(self, email=str):
+        self.__email = email    
+             
     def __str__(self):
         return f"Nombre = {self.__nombre}, Apellido = {self.__apellido}, E-mail = {self.__email}, Contraseña = {self.__contrasenia}"
 
@@ -23,14 +39,17 @@ class Usuario():
             return False
 # !_____________________
 
-
 class Estudiante(Usuario):
     def __init__(self, nombre=str, apellido=str, email=str, contrasenia=str, legajo=int, anio_inscripcion_carrera=int, mis_cursos=[]):
         super().__init__(nombre, apellido, email, contrasenia)
         self.__legajo = legajo
         self.__anio_inscripcion_carrera = anio_inscripcion_carrera
-        self.mis_cursos = mis_cursos
-
+        self.__mis_cursos = mis_cursos
+    #!get-set lista mis_cursos
+    def get_mis_cursos(self):
+        return self.__mis_cursos
+    def set_mis_cursos(self, curso=object):
+        self.__mis_cursos.append(curso)
     def __str__(self):
         return "Estudiante: " + super().__str__() + f", Legajo = {self.__legajo}, Año Inscripcion en la Carrera = {self.__anio_inscripcion_carrera}"
 
@@ -44,8 +63,9 @@ class Estudiante(Usuario):
         else:
             print(f"Usted ya esta anotado en {curso.__nombre}")
 
-
+#--
 def busca_curso(lista=list, nombre=str):
+    
     for i in lista:
         if i.__nombre == nombre:
             return True
@@ -59,7 +79,12 @@ class Profesor(Usuario):
         super().__init__(nombre, apellido, email, contrasenia)
         self.__titulo = titulo
         self.__anio_egreso = anio_egreso
-        self.mis_cursos = mis_cursos
+        self.__mis_cursos = mis_cursos
+
+    def get_mis_cursos(self):
+        return self.__mis_cursos
+    def set_mis_cursos(self, curso=object):
+        self.__mis_cursos.append(curso)
 
     def __str__(self):
         return "Profesor: " + super().__str__() + f", Titulo = {self.__titulo}, Año de Egreso = {self.__anio_egreso}"
@@ -70,59 +95,79 @@ class Profesor(Usuario):
         self.__mis_cursos.append(nuevo_curso)
         lista_cursos.append(nuevo_curso)
         print(nuevo_curso)
-    
-    def Mostrar_mis_cursos(self):
-        return mostrar_listas(self.__mis_cursos)
-
 # !_____________________
 
 class Curso (Estudiante, Profesor):
-    def __init__(self, nombre=str, contrasenia_matriculacion = None, archivos=list):
+    def __init__(self, nombre=str, contrasenia_matriculacion = str, archivos=list):
         self.__nombre = nombre
         self.__contrasenia_matriculacion = self.__generar_contrasenia()
         self.__archivos = archivos
+    
+    #!set, get nombre y archivos
+    def get_nombre(self):
+        return self.__nombre
+    def set_nombre(self, nombre=str):
+        self.__nombre = nombre
+        
+    def get_archivos(self):
+        return self.__archivos
+    def set_archivos(self, archivos =str):
+        self.__archivos.append(archivos)
 
+
+    
     def __str__(self):
-        return f"Curso: Nombre = {self.__nombre}\nContraseña de Matriculacion = {self.__contrasenia_matriculacion}"
+        return f"Curso: Nombre = {self.__nombre}, Contraseña de Matriculacion = {self.__contrasenia_matriculacion}"
 
     def __generar_contrasenia(self):
-        self.__contrasenia_matriculacion = "0"
+        contracenia = "000"
+        return  contracenia
         
 # !__________funciones___________
-
 def mostrar_listas(lista = list):
-    for i in lista:
-        print(i + "\n")
-
+    for valor, i in enumerate(lista):
+        print(f"{i+1}. {valor}\n")
+        
+def mostrar_mis_cursos(lista_objetos = list, indice = int):
+    mis_cursos = lista_objetos[indice].get_mis_cursos()
+    mostrar_listas(mis_cursos)
 
 def buscar_usuario(lista = list, email = str):
-    for valor, indice in lista: 
-        if valor.__email == email:
+    for valor, indice in enumerate(lista): 
+        if valor.get_email() == email:
           return True, indice
         else: return False
     
 def mostrar_cursos(lista = list):
     for i in lista: 
-        print(f"Materia: {i.__nombre}\t\tCarrera: Tecnicatura Universitaria en Programación\n")
+        print(f"Materia: {i.get_nombre()}\t\tCarrera: Tecnicatura Universitaria en Programación\n")
 
 def agregar_a_lista(lista_de, ob):
     lista_de.append(ob)
 
 
 #!---------Objetos-----------
-usuario_uno = Usuario("Azul", "Vega", "Azul.vega@gmail.com", "20424")
-print(usuario_uno)
 print("\n")
 
 alumno_uno = Estudiante("Lautaro", "Vega", "Lautaro.vega@gmail.com", "2424a", 5858, 2023)
+alumno_dos = Estudiante("Maria", "Perez", "Maria.perez@gmail.com", "1234a", 5050, 2022)
+alumno_tres = Estudiante("Victoria", "Garcia", "Lautaro.vega@gmail.com", "2444a", 3030, 2023)
+alumnos_registrados.append(alumno_uno)
+alumnos_registrados.append(alumno_dos)
+alumnos_registrados.append(alumno_tres)
 
-prof_uno = Profesor("Gustavo", "Ramirez","Gustavo.Ramirez@gmail.com", "3883a", "Ingeniero", 2000)
-print(prof_uno)
-print("\n")
+prof_uno = Profesor("Gustavo", "Ramirez","Gustavo.Ramirez@gmail.com", "3883a", "Ingeniero", 2005)
+prof_dos = Profesor("Bettiana", "apellidoRaro","bettiana.123@gmail.com", "1010a", "Ingeniera", 2000)
+prof_tres = Profesor("Veronica", "Zanches","Veronica.z@gmail.com", "5050b", "Ingeniera", 1999)
+profesores_registrados.append(prof_tres)
+profesores_registrados.append(prof_dos)
+profesores_registrados.append(prof_uno)
 
 curso_uno = Curso("matematicas")
+curso_dos = Curso("Programacion")
+curso_tres = Curso("Estadistica")
+lista_cursos.append(curso_uno)
+lista_cursos.append(curso_dos)
+lista_cursos.append(curso_tres)
 
-print(curso_uno)
-
-print(usuario_uno, "\n ", usuario_uno.validar_credenciales())
-prof_uno.dictar_curso()
+print("\n")
