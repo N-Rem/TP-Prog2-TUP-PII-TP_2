@@ -91,10 +91,10 @@ class Profesor(Usuario):
         print(nuevo_curso)
 # !_____________________
 class Curso ():
-    def __init__(self, nombre=str, archivos=list):
+    def __init__(self, nombre=str):
         self.__nombre = nombre
         self.__contrasenia_matriculacion = self.__generar_contrasenia()
-        self.__archivos = archivos
+        self.__archivos = []
     
     #!set, get nombre y archivos
     def get_nombre(self):
@@ -118,6 +118,7 @@ class Curso ():
         return  contracenia      
 # !__________funciones___________
 def mostrar_listas(lista = list):
+    print("----------------------------")
     for i,valor in enumerate(lista):
         print(f"{i+1}. {valor.get_nombre()}\n")
         
@@ -136,21 +137,20 @@ def mostrar_cursos(lista = list):
     for i in lista: 
         print(f"Materia: {i.get_nombre()}\t\tCarrera: Tecnicatura Universitaria en Programación\n")
 
-#!---------Objetos-----------
+#!---------Creacion de Objetos-----------
 alumno_uno = Estudiante("Lautaro", "Vega", "Lautaro.vega@gmail.com", "2424a", 5858, 2023)
 alumno_dos = Estudiante("Maria", "Gomez", "Maria.g@gmail.com", "1234a", 5050, 2022)
 alumno_tres = Estudiante("Victoria", "Sosa", "Vicky.ss@gmail.com", "2444a", 3030, 2023)
 alumnos_registrados.append(alumno_uno)
 alumnos_registrados.append(alumno_dos)
 alumnos_registrados.append(alumno_tres)
-print(alumno_tres.get_email())
 
 prof_uno = Profesor("Gustavo", "Ramirez","Gustavo.Ramirez@gmail.com", "3883a", "Ingeniero", 2005)
 prof_dos = Profesor("Bettiana", "apellidoRaro","bettiana.123@gmail.com", "1010a", "Ingeniera", 2000)
 prof_tres = Profesor("Veronica", "Zanches","Veronica.z@gmail.com", "5050b", "Ingeniera", 1999)
-profesores_registrados.append(prof_tres)
-profesores_registrados.append(prof_dos)
 profesores_registrados.append(prof_uno)
+profesores_registrados.append(prof_dos)
+profesores_registrados.append(prof_tres)
 
 curso_uno = Curso("Programacion I")
 curso_dos = Curso("Matematicas")
@@ -159,18 +159,19 @@ lista_cursos.append(curso_uno)
 lista_cursos.append(curso_dos)
 lista_cursos.append(curso_tres)
 
-prof_uno.set_mis_cursos(curso_uno)
+prof_uno.set_mis_cursos(curso_tres)
 prof_dos.set_mis_cursos(curso_dos)
-prof_tres.set_mis_cursos(curso_tres)
+prof_tres.set_mis_cursos(curso_uno)
 
 alumno_tres.set_mis_cursos(curso_uno)
 alumno_tres.set_mis_cursos(curso_dos)
 alumno_tres.set_mis_cursos(curso_tres)
 
 print("\n")
-
 mostrar_mis_cursos(alumnos_registrados, 0)
 mostrar_mis_cursos(alumnos_registrados,1)
 mostrar_mis_cursos(alumnos_registrados,2)
 
-mostrar_mis_cursos(profesores_registrados,2)
+mostrar_mis_cursos(profesores_registrados,0)
+
+print(alumno_tres.get_email())
