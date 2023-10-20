@@ -1,6 +1,6 @@
 
 import random
-
+from operator import attrgetter
 alumnos_registrados = []
 profesores_registrados = []
 lista_cursos = []
@@ -146,7 +146,8 @@ def buscar_usuario(lista = list, email = str, contrasenia = str): #!!!--- Compru
     return False, 0 #!___ 0 po
     
 def mostrar_cursos(lista = list): #!!! muestra todos los cursos que estan anotados en el sistema con el formato que se pide.
-    for i in lista: 
+    cursos_prdenados = sorted(lista, key=lambda x: x.get_nombre())
+    for i in cursos_prdenados: 
         print(f"Materia: {i.get_nombre()}\t\tCarrera: Tecnicatura Universitaria en Programación\n")
 
 def existencia_alumno(mail:str,registrados):
@@ -155,6 +156,7 @@ def existencia_alumno(mail:str,registrados):
         if (obtener_email==mail):
             return True
     return False
+
 #!---------Creacion de Objetos-----------Crea Estudiantes/profesores/y cursos y los agrega a la listas (la que estan arriba de todo)
 alumno_uno = Estudiante("Lautaro", "Vega", "Lautaro.vega@gmail.com", "2424a", 5858, 2023)
 alumno_dos = Estudiante("Maria", "Gomez", "Maria.g@gmail.com", "1234a", 5050, 2022)
