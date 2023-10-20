@@ -10,7 +10,7 @@ while (op != 4):
             print("\n\t\t--Ingresar Alumno--\n\n")
             mail = input("Ingrese su E-mail: ")##!!!-----input para ingresar como alumno
             contrasenia = input("Ingrese su contraseña: ")
-            validacion, indice = ob.buscar_usuario(ob.alumnos_registrados, mail)##!!!-----Se usa la funcion buscar usuario (retorna un boleano y un indice)
+            validacion, indice = ob.buscar_usuario(ob.alumnos_registrados, mail , contrasenia)##!!!-----Se usa la funcion buscar usuario (retorna un boleano y un indice)
             if (validacion):#!!!------si es true accede
                 op_alumn = input("\n\t\t--Accedio al Sistema.--\n1. Matricularse a un curso\n2. Ver curso\n3. Volver al menú principal\n\t")
                 if (op_alumn.isdigit()):#!!!-----si es digito entra sino vuelve al menu principal.
