@@ -35,6 +35,11 @@ class Usuario(): #!!!---Super clase
     def __str__(self): #!!!---cuando se imprime el objeto aparece sin nada se imprime esta cadena
         return f"Nombre = {self.__nombre}, Apellido = {self.__apellido}, E-mail = {self.__email}, Contraseña = {self.__contrasenia}"
 
+    def validar_credenciales(self, email: str, contrasena: str):
+        if email == self.get_email() and contrasena == self.get__contrasenia():
+            return True
+        else:
+            return False     
 
 # !_____________________
 class Estudiante(Usuario):
@@ -135,20 +140,9 @@ def mostrar_mis_cursos(lista_objetos = list, indice = int): ##!!!--- muestra mis
         
 def buscar_usuario(lista = list, email = str, contrasenia = str): #!!!--- Comprueba si el Alumno o profesor existe o no con el mail (falta que comprueve la contraseña)
     for indice, valor in enumerate(lista): 
-        objeto_email = valor.get_email()
-        objeto_contrasenia = valor.get__contrasenia()
-        if objeto_email == email and objeto_contrasenia==contrasenia:
+        if valor.validar_credenciales(email , contrasenia):
           return True, indice #!!!--- si lo encuentra Retorna True y el indice de donde se encuentra
     return False, 0 #!___ 0 po
-    
-    
-    
-    
-    # for indice, valor in enumerate(lista): 
-    #     objeto_lista = valor.get_email()
-    #     if objeto_lista == email:
-    #       return True, indice #!!!--- si lo encuentra Retorna True y el indice de donde se encuentra
-    # return False, 0 #!___ 0 porque tenia que retornar algo sino no me fucnionaba
     
 def mostrar_cursos(lista = list): #!!! muestra todos los cursos que estan anotados en el sistema con el formato que se pide.
     for i in lista: 
