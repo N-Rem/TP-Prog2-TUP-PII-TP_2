@@ -149,6 +149,11 @@ def mostrar_cursos(lista = list): #!!! muestra todos los cursos que estan anotad
     for i in lista: 
         print(f"Materia: {i.get_nombre()}\t\tCarrera: Tecnicatura Universitaria en Programación\n")
 
+def existencia_alumno(mail):
+    for i in alumnos_registrados:  
+        if (i ==mail):
+            return True
+    return False    
 #!---------Creacion de Objetos-----------Crea Estudiantes/profesores/y cursos y los agrega a la listas (la que estan arriba de todo)
 alumno_uno = Estudiante("Lautaro", "Vega", "Lautaro.vega@gmail.com", "2424a", 5858, 2023)
 alumno_dos = Estudiante("Maria", "Gomez", "Maria.g@gmail.com", "1234a", 5050, 2022)

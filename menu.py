@@ -8,42 +8,46 @@ while (op != 4):
         op = int(op)
         if (op == 1):###!!!------opcion 1
             print("\n\t\t--Ingresar Alumno--\n\n")
-            mail = input("Ingrese su E-mail: ")##!!!-----input para ingresar como alumno
-            contrasenia = input("Ingrese su contraseña: ")
-            validacion, indice = ob.buscar_usuario(ob.alumnos_registrados, mail , contrasenia)##!!!-----Se usa la funcion buscar usuario (retorna un boleano y un indice)
-            if (validacion):#!!!------si es true accede
-                op_alumn = input("\n\t\t--Accedio al Sistema.--\n1. Matricularse a un curso\n2. Ver curso\n3. Volver al menú principal\n\t")
-                if (op_alumn.isdigit()):#!!!-----si es digito entra sino vuelve al menu principal.
-                    op_alumn = int(op_alumn)#!!!----se combierte el op en entero.
-                    if op_alumn == 1:
-                        ob.mostrar_listas(ob.lista_cursos)#!!!-----funcion que impime la lista que se desea
-                        op_alumn = input("Seleciona una opcion: ")
-                        if (op_alumn.isdigit()):
-                            op_alumn = int(op_alumn)
-                            if op_alumn <= len(ob.lista_cursos) and op_alumn >= 1:#!!!-----Se comprueba si se eligio bien, op_alumn(opcion elegida) <= largo de la lista
-                                indice_curso = op_alumn - 1 #!!!---- op_alumn-1 ahora es el numero de indice de la lista que se desea, en este caso aumnos_registrados[]..
-                                pass_curso = input("Digite la contraseña: ") #!!!---- Se pide la contraseña de maticulacion
-                                ob.alumnos_registrados[indice].Matricular_en_curso(ob.lista_cursos[indice_curso], pass_curso)#!!!---se busca en la lista el alumno.Metodo(matricular_en_curso)
+            mail = input("Ingrese su E-mail: ")##!!!-----input para ingresar como alumno                 
+            if(ob.existencia_alumno(mail)):
+                contrasenia = input("Ingrese su contraseña: ")
+                validacion, indice = ob.buscar_usuario(ob.alumnos_registrados, mail , contrasenia)##!!!-----Se usa la funcion buscar usuario (retorna un boleano y un indice)
+                if (validacion):#!!!------si es true accede
+                    op_alumn = input("\n\t\t--Accedio al Sistema.--\n1. Matricularse a un curso\n2. Ver curso\n3. Volver al menú principal\n\t")
+                    if (op_alumn.isdigit()):#!!!-----si es digito entra sino vuelve al menu principal.
+                        op_alumn = int(op_alumn)#!!!----se combierte el op en entero.
+                        if op_alumn == 1:
+                            ob.mostrar_listas(ob.lista_cursos)#!!!-----funcion que impime la lista que se desea
+                            op_alumn = input("Seleciona una opcion: ")
+                            if (op_alumn.isdigit()):
+                                op_alumn = int(op_alumn)
+                                if op_alumn <= len(ob.lista_cursos) and op_alumn >= 1:#!!!-----Se comprueba si se eligio bien, op_alumn(opcion elegida) <= largo de la lista
+                                    indice_curso = op_alumn - 1 #!!!---- op_alumn-1 ahora es el numero de indice de la lista que se desea, en este caso aumnos_registrados[]..
+                                    pass_curso = input("Digite la contraseña: ") #!!!---- Se pide la contraseña de maticulacion
+                                    ob.alumnos_registrados[indice].Matricular_en_curso(ob.lista_cursos[indice_curso], pass_curso)#!!!---se busca en la lista el alumno.Metodo(matricular_en_curso)
+                                else:
+                                    print("Opcion no valida..")
                             else:
-                                print("Opcion no valida..")
+                                print("Debe ingresar un numero entero..")
+                        elif op_alumn == 2: 
+                            ob.mostrar_mis_cursos(ob.alumnos_registrados, indice)#!!!-----2 opcion; solo muestra la lsita de cursos del alumno.
+                        elif op_alumn == 3:
+                            print("Vuelve al menu principal")
                         else:
-                            print("Debe ingresar un numero entero..")
-                    elif op_alumn == 2: 
-                        ob.mostrar_mis_cursos(ob.alumnos_registrados, indice)#!!!-----2 opcion; solo muestra la lsita de cursos del alumno.
-                    elif op_alumn == 3:
-                        print("Vuelve al menu principal")
+                            print("Opcion no valida")
                     else:
-                        print("Opcion no valida")
+                        print("Debe ser un numero entero")
                 else:
-                    print("Debe ser un numero entero")
+                    print("Error de ingreso.")
             else:
-                print("Error de ingreso.")
+                print("el alumno no existe debe darse de alta en alumnado.......")
+
         #!----------------Profesores-----------------------!!!---Es muy similar a ingresar Alumno
         elif (op == 2):
             print("\n\t\t--Ingresar Profesor--\n\n")
             mail = input("Ingrese su E-mail: ")
             contrasenia = input("Ingrese su contraseña: ")
-            validacion, indice = ob.buscar_usuario(ob.profesores_registrados, mail)#!!!----Esta fun nos da el Indice
+            validacion, indice = ob.buscar_usuario(ob.profesores_registrados, mail, contrasenia)#!!!----Esta fun nos da el Indice
             if (validacion):
                 op_prof = input("\n\t\t--Accedio al Sistema.--\n1. Dictar curso \n2. Ver mis cursos \n3. Volver al menú principal\n\t")
                 if (op_prof.isdigit()):
