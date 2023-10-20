@@ -1,10 +1,11 @@
+from abc import ABC, abstractmethod
 import random
 
 alumnos_registrados = []
 profesores_registrados = []
 lista_cursos = []
 
-class Usuario(): #!!!---Super clase
+class Usuario(ABC): #!!!---Super clase
     def __init__(self, nombre=str, apellido=str, email=str, contrasenia=str): #!--- se ponde =str para remarcar que el valor del atributo tiene que ser en este caso String
         self.__nombre = nombre
         self.__apellido = apellido
