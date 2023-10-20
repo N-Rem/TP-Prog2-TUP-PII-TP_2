@@ -1,11 +1,11 @@
-from abc import ABC, abstractmethod
+
 import random
 
 alumnos_registrados = []
 profesores_registrados = []
 lista_cursos = []
 
-class Usuario(ABC): #!!!---Super clase
+class Usuario(): #!!!---Super clase
     def __init__(self, nombre=str, apellido=str, email=str, contrasenia=str): #!--- se ponde =str para remarcar que el valor del atributo tiene que ser en este caso String
         self.__nombre = nombre
         self.__apellido = apellido
@@ -149,11 +149,12 @@ def mostrar_cursos(lista = list): #!!! muestra todos los cursos que estan anotad
     for i in lista: 
         print(f"Materia: {i.get_nombre()}\t\tCarrera: Tecnicatura Universitaria en Programación\n")
 
-def existencia_alumno(mail):
-    for i in alumnos_registrados:  
-        if (i ==mail):
+def existencia_alumno(mail:str,registrados):
+    for i in registrados:  
+        obtener_email = i.get_email()
+        if (obtener_email==mail):
             return True
-    return False    
+    return False
 #!---------Creacion de Objetos-----------Crea Estudiantes/profesores/y cursos y los agrega a la listas (la que estan arriba de todo)
 alumno_uno = Estudiante("Lautaro", "Vega", "Lautaro.vega@gmail.com", "2424a", 5858, 2023)
 alumno_dos = Estudiante("Maria", "Gomez", "Maria.g@gmail.com", "1234a", 5050, 2022)

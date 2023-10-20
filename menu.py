@@ -9,7 +9,7 @@ while (op != 4):
         if (op == 1):###!!!------opcion 1
             print("\n\t\t--Ingresar Alumno--\n\n")
             mail = input("Ingrese su E-mail: ")##!!!-----input para ingresar como alumno                 
-            if(ob.existencia_alumno(mail)):
+            if ob.existencia_alumno(mail,ob.alumnos_registrados):
                 contrasenia = input("Ingrese su contraseña: ")
                 validacion, indice = ob.buscar_usuario(ob.alumnos_registrados, mail , contrasenia)##!!!-----Se usa la funcion buscar usuario (retorna un boleano y un indice)
                 if (validacion):#!!!------si es true accede
@@ -30,7 +30,7 @@ while (op != 4):
                             else:
                                 print("Debe ingresar un numero entero..")
                         elif op_alumn == 2: 
-                            ob.mostrar_mis_cursos(ob.alumnos_registrados, indice)#!!!-----2 opcion; solo muestra la lsita de cursos del alumno.
+                                ob.mostrar_mis_cursos(ob.alumnos_registrados, indice)#!!!-----2 opcion; solo muestra la lsita de cursos del alumno.
                         elif op_alumn == 3:
                             print("Vuelve al menu principal")
                         else:
@@ -40,42 +40,43 @@ while (op != 4):
                 else:
                     print("Error de ingreso.")
             else:
-                print("el alumno no existe debe darse de alta en alumnado.......")
-
+                print("debe darse de alta en alumnado.....\n")
         #!----------------Profesores-----------------------!!!---Es muy similar a ingresar Alumno
         elif (op == 2):
             print("\n\t\t--Ingresar Profesor--\n\n")
             mail = input("Ingrese su E-mail: ")
-            contrasenia = input("Ingrese su contraseña: ")
-            validacion, indice = ob.buscar_usuario(ob.profesores_registrados, mail, contrasenia)#!!!----Esta fun nos da el Indice
-            if (validacion):
-                op_prof = input("\n\t\t--Accedio al Sistema.--\n1. Dictar curso \n2. Ver mis cursos \n3. Volver al menú principal\n\t")
-                if (op_prof.isdigit()):
-                    op_prof = int(op_prof)
-                    if op_prof == 1: #!!!---- con el indice se busca el objeto y se llama al metodo .Dictar_curso()
-                        ob.profesores_registrados[indice].Dictar_curso()#!!!---- CREA UN CUSRO.
-                        
-                    elif op_prof == 2:
-                        ob.mostrar_mis_cursos(ob.profesores_registrados,indice)#!!!--- Muestra los cursos del Profesor, 
-                        op_prof = input("Seleciones un curso.\n")
-                        if op_prof.isdigit():
-                            op_prof = int(op_prof)
-                            if (op_prof >= 1 or op_prof <= len(ob.profesores_registrados[indice].get_mis_cursos())):
-                                #!!!---ListaProfesores[indice] nos da el objeto Prof, .get_mis_cursos()[indice] nos da el objeto Curso que se eligio--
-                                print(ob.profesores_registrados[indice].get_mis_cursos()[op_prof-1]) #!!!----imprime en nombre del curso y la contraseña
-                            else:
-                                print("Ingrese una opcion valida.. \n")
-                        else: 
-                            print("Debe ser un numero entero.. \n")
-                    elif op_prof == 3:
-                        print("Vuelve al menu principal\n")
-                    else:
-                        print("Opcion no valida\n")
-                else:
-                    print("Debe ser un numero entero\n")
-            else:
-                print("Error de ingreso.\n")
+            if ob.existencia_alumno(mail,ob.profesores_registrados):
+                contrasenia = input("Ingrese su contraseña: ")
+                validacion, indice = ob.buscar_usuario(ob.profesores_registrados, mail, contrasenia)#!!!----Esta fun nos da el Indice
+                if (validacion):
+                    op_prof = input("\n\t\t--Accedio al Sistema.--\n1. Dictar curso \n2. Ver mis cursos \n3. Volver al menú principal\n\t")
+                    if (op_prof.isdigit()):
+                        op_prof = int(op_prof)
+                        if op_prof == 1: #!!!---- con el indice se busca el objeto y se llama al metodo .Dictar_curso()
+                            ob.profesores_registrados[indice].Dictar_curso()#!!!---- CREA UN CUSRO.
 
+                        elif op_prof == 2:
+                            ob.mostrar_mis_cursos(ob.profesores_registrados,indice)#!!!--- Muestra los cursos del Profesor, 
+                            op_prof = input("Seleciones un curso.\n")
+                            if op_prof.isdigit():
+                                op_prof = int(op_prof)
+                                if (op_prof >= 1 or op_prof <= len(ob.profesores_registrados[indice].get_mis_cursos())):
+                                    #!!!---ListaProfesores[indice] nos da el objeto Prof, .get_mis_cursos()[indice] nos da el objeto Curso que se eligio--
+                                    print(ob.profesores_registrados[indice].get_mis_cursos()[op_prof-1]) #!!!----imprime en nombre del curso y la contraseña
+                                else:
+                                    print("Ingrese una opcion valida.. \n")
+                            else: 
+                                print("Debe ser un numero entero.. \n")
+                        elif op_prof == 3:
+                            print("Vuelve al menu principal\n")
+                        else:
+                            print("Opcion no valida\n")
+                    else:
+                        print("Debe ser un numero entero\n")
+                else:
+                    print("Error de ingreso.\n")
+            else:
+                print("debe darse de alta en profesores.....\n")
         #!------Op Tres-----
         elif (op == 3):
             print("\n\t\t--Ver Curso--")
