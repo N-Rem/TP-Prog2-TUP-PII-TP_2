@@ -137,18 +137,18 @@ def mostrar_mis_cursos(lista_objetos = list, indice = int): ##!!!--- muestra mis
     mis_cursos = lista_objetos[indice].get_mis_cursos()
     mostrar_listas(mis_cursos)
         
-def buscar_usuario(lista = list, email = str, contrasenia = str): #!!!--- Comprueba si el Alumno o profesor existe o no con el mail (falta que comprueve la contraseña)
+def buscar_usuario(lista = list, email = str, contrasenia = str): #!!!--- Comprueba si el Alumno o profesor existe o no con el mail
     for indice, valor in enumerate(lista): 
         if valor.validar_credenciales(email , contrasenia):
           return True, indice #!!!--- si lo encuentra Retorna True y el indice de donde se encuentra
-    return False, 0 #!___ 0 po
+    return False, 0 
     
 def mostrar_cursos(lista = list): #!!! muestra todos los cursos que estan anotados en el sistema con el formato que se pide.
     cursos_prdenados = sorted(lista, key=lambda x: x.get_nombre())
     for i in cursos_prdenados: 
         print(f"Materia: {i.get_nombre()}\t\tCarrera: Tecnicatura Universitaria en Programación\n")
 
-def existencia_alumno(mail:str,registrados):
+def existencia_alumno(mail=str,registrados=list):
     for i in registrados:  
         obtener_email = i.get_email()
         if (obtener_email==mail):
@@ -164,7 +164,7 @@ alumnos_registrados.append(alumno_dos)
 alumnos_registrados.append(alumno_tres)
 
 prof_uno = Profesor("Gustavo", "Ramirez","Gustavo.Ramirez@gmail.com", "3883a", "Ingeniero", 2005)
-prof_dos = Profesor("Bettiana", "apellidoRaro","bettiana.123@gmail.com", "1010a", "Ingeniera", 2000)
+prof_dos = Profesor("Bettiana", "Azul","bettiana.123@gmail.com", "1010a", "Ingeniera", 2000)
 prof_tres = Profesor("Veronica", "Zanches","Veronica.z@gmail.com", "5050b", "Ingeniera", 1999)
 profesores_registrados.append(prof_uno)
 profesores_registrados.append(prof_dos)
@@ -186,12 +186,11 @@ alumno_tres.set_mis_cursos(curso_uno)
 alumno_tres.set_mis_cursos(curso_dos)
 alumno_tres.set_mis_cursos(curso_tres)
 
-print("\n")
-mostrar_mis_cursos(alumnos_registrados, 0)
-mostrar_mis_cursos(alumnos_registrados,1)
-mostrar_mis_cursos(alumnos_registrados,2)
+# mostrar_mis_cursos(alumnos_registrados, 0)
+# mostrar_mis_cursos(alumnos_registrados,1)
+# mostrar_mis_cursos(alumnos_registrados,2)
 
-mostrar_mis_cursos(profesores_registrados,0)
+# mostrar_mis_cursos(profesores_registrados,0)
 
-print(alumno_tres.get_email())
-print(curso_uno)
+# print(alumno_tres.get_email())
+# print(curso_uno)

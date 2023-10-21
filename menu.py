@@ -40,7 +40,7 @@ def menu_alumno():
                 if (op_alumn.isdigit()):
                     op_alumn = int(op_alumn)
                     if op_alumn <= len(ob.lista_cursos) and op_alumn >= 1:#!!!-----Se comprueba si se eligio bien, op_alumn(opcion elegida) <= largo de la lista
-                        indice_curso = op_alumn - 1 #!!!---- op_alumn-1 ahora es el numero de indice de la lista que se desea, en este caso aumnos_registrados[]..
+                        indice_curso = op_alumn - 1 #!!!---- op_alumn-1 ahora es el numero de indice de la lista que se desea
                         pass_curso = input("Digite la contraseña: ") #!!!---- Se pide la contraseña de maticulacion
                         ob.alumnos_registrados[indice].Matricular_en_curso(ob.lista_cursos[indice_curso], pass_curso)#!!!---se busca en la lista el alumno.Metodo(matricular_en_curso)
                     else:
@@ -87,7 +87,7 @@ while (op != 4):
                 else:
                     print("Error de ingreso.\n")
             else:
-                print("debe darse de alta en profesores.....\n")
+                print("debe darse de alta en profesorado.....\n")
         #!------Op Tres-----
         elif (op == 3):
             print("\n\t\t--Ver Curso--")
