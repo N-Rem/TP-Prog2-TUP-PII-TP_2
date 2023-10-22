@@ -127,6 +127,40 @@ class Curso (): #!!cursos es un objeto que no depende de los otros.
         
         contracenia = f"{nums[n_random]}{abc[l_random]}{nums[n_random]}{abc[l_random]}{nums[n_random]}{abc[l_random]}"
         return  contracenia      
+
+   
+#!__________Carrera______________
+class Carrera():
+    def __init__(self, nombre=str, cant_anios=str, cantidad_materias = int):
+        self.__nombre = nombre
+        self.__cant_anios = cant_anios
+        self.__cantidad_materias = cantidad_materias
+    
+    def get_nombre(self):
+        return self.__nombre
+    
+    def get_cant_anios(self):
+        return self.__cant_anios
+    
+    def __str__(self):
+        return f"Carrera: Nombre = {self.__nombre}, Cantidad de Años = {self.__cant_anios}"
+    
+    def get_cantidad_aterias(self):
+        return self.__cantidad_materias
+        
+
+#!__________Archivo______________
+class Archivo():
+    def __init__(self, nombre = str, fecha = str, formato = str):
+        self.__nombre = nombre
+        self.__fecha = fecha
+        self.__formato = formato
+        
+    def __str__(self):
+        return f"Archivo: Nombre = {self.__nombre}, Fecha = {self.__fecha}, Formato = {self.__formato}"
+
+
+
 # !__________funciones___________
 def mostrar_listas(lista = list): #!!!--------- Muestra los nombres de la lista enumerados para que el usuario elija.
     print("----------------------------")
