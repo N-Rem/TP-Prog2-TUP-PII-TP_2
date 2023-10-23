@@ -162,7 +162,7 @@ class Archivo():
 
 
 # !__________funciones___________
-def mostrar_listas(lista = list): #!!!--------- Muestra los nombres de la lista enumerados para que el usuario elija.
+def mostrar_listas(lista = list): #!!! --------- Muestra los nombres de la lista enumerados para que el usuario elija.
     print("----------------------------")
     for i,valor in enumerate(lista):
         print(f"{i+1}. {valor.get_nombre()}\n")
@@ -184,6 +184,7 @@ def mostrar_cursos(lista = list): #!!! muestra todos los cursos que estan anotad
 
 def existencia_alumno(mail=str,registrados=list):
     for i in registrados:  
+        print(i.get_email())
         obtener_email = i.get_email()
         if (obtener_email==mail):
             return True
