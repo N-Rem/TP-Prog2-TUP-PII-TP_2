@@ -1,7 +1,9 @@
 import random
+from datetime import date
 alumnos_registrados = []
 profesores_registrados = []
 lista_cursos = []
+
 
 class Usuario(): #!!!---Super clase
     def __init__(self, nombre=str, apellido=str, email=str, contrasenia=str): #!--- se ponde =str para remarcar que el valor del atributo tiene que ser en este caso String
@@ -95,14 +97,14 @@ class Profesor(Usuario):
         self.__titulo = titulo
         self.__anio_egreso = anio_egreso
         self.__mis_cursos = []
-
+        
     def get_mis_cursos(self):
         return self.__mis_cursos
     def set_mis_cursos(self, curso=object):
         self.__mis_cursos.append(curso)
 
     def __str__(self):
-        return "Profesor: " + super().__str__() + f", Titulo = {self.__titulo}, Año de Egreso = {self.__anio_egreso}"
+        return "Profesor: " + super().__str__() + f", Titulo = {self.__titulo}  ,  Año de Egreso = {self.__anio_egreso} , "
 
     def Dictar_curso(self): #!!!--- Funcion que crea cursos.
         nombre = input("Ingrese el nombre del curso: ")
@@ -110,30 +112,38 @@ class Profesor(Usuario):
         self.__mis_cursos.append(nuevo_curso)
         lista_cursos.append(nuevo_curso)
         print(nuevo_curso)
+        
 # !_____________________
 class Curso (): #!!cursos es un objeto que no depende de los otros. 
+    __codigo = 0
     def __init__(self, nombre=str): #!! solo se le pasa el nombre
         self.__nombre = nombre
         self.__contrasenia_matriculacion = self.__generar_contrasenia() #!!! cuando se crea el curso (solo con el nombre) se activa la fun generar_contraceña
         self.__archivos = [] #!!---Este es para la segunda parte del tp. (ahora Creo que no hay que hacer nada)
-    
+        Curso.__codigo += 1
     #!set, get nombre y archivos
     def get_nombre(self):
         return self.__nombre
     def set_nombre(self, nombre=str):
         self.__nombre = nombre
     
+    def get_codigo(self):
+        return self.__codigo
+    
+    def set_codigo(self, codigo=int):
+        self.__codigo = codigo
+
     def get_contrasenia (self):
         return self.__contrasenia_matriculacion
         
     def get_archivos(self):
         return self.__archivos
-    def set_archivos(self, archivos =str):
+    def set_archivos(self, archivos):
         self.__archivos.append(archivos)
     #!<------------------------------------
 
     def __str__(self):
-        return f"Curso: Nombre = {self.__nombre}, Contraseña de Matriculacion = {self.__contrasenia_matriculacion}"
+        return f"   \tCurso: Nombre = {self.__nombre} \n   \tContraseña de Matriculacion = {self.__contrasenia_matriculacion}\n     \tCodigo: {Curso.__codigo}"
 
     def __generar_contrasenia(self): #!!Fun que crea contraseñas de matriculacion. 
         l_random = random.randint(0,26)
@@ -144,17 +154,21 @@ class Curso (): #!!cursos es un objeto que no depende de los otros.
         
         contracenia = f"{nums[n_random]}{abc[l_random]}{nums[n_random]}{abc[l_random]}{nums[n_random]}{abc[l_random]}"
         return  contracenia      
+    
+    def Ingresar_archivo(self,nombre,formato):
+        nuevo_archivo= Archivo(nombre,formato)
+        self.__archivos.append(nuevo_archivo)
+        print(nuevo_archivo)
 
-   
 #!__________Carrera______________
 class Carrera():
     def __init__(self, nombre=str, cant_anios=str, cantidad_materias = int):
         self.__nombre = nombre
         self.__cant_anios = cant_anios
         self.__cantidad_materias = cantidad_materias
+
         self.__alumnos = []
-        
-    
+
     def get_nombre(self):
         return self.__nombre
     
@@ -173,9 +187,9 @@ class Carrera():
 
 #!__________Archivo______________
 class Archivo():
-    def __init__(self, nombre = str, fecha = str, formato = str):
+    def __init__(self, nombre = str, formato = str):
         self.__nombre = nombre
-        self.__fecha = fecha
+        self.__fecha = date.today()
         self.__formato = formato
         
     def __str__(self):
@@ -184,7 +198,7 @@ class Archivo():
 
 
 # !__________funciones___________
-def mostrar_listas(lista = list): #!!!--------- Muestra los nombres de la lista enumerados para que el usuario elija.
+def mostrar_listas(lista = list): #!!! --------- Muestra los nombres de la lista enumerados para que el usuario elija.
     print("----------------------------")
     for i,valor in enumerate(lista):
         print(f"{i+1}. {valor.get_nombre()}\n")
@@ -210,7 +224,6 @@ def existencia_alumno(mail=str,registrados=list):
         if (obtener_email==mail):
             return True
     return False
-
 #!---------Creacion de Objetos-----------Crea Estudiantes/profesores/y cursos y los agrega a la listas (la que estan arriba de todo)
 alumno_uno = Estudiante("Lautaro", "Vega", "Lautaro.vega@gmail.com", "2424a", 5858, 2023)
 alumno_dos = Estudiante("Maria", "Gomez", "Maria.g@gmail.com", "1234a", 5050, 2022)
@@ -251,8 +264,12 @@ alumno_tres.set_mis_cursos(curso_tres)
 # print(alumno_tres.get_email())
 # print(curso_uno)
 
+
+# profesor.set_mis_cursos(
+
 archivo_uno = Archivo("java", "12/3/23", "pfd")
 archivo_dos = Archivo("JS", "5/4/23", "pfd")
 
 curso_uno.set_archivos(archivo_uno)
 curso_uno.set_archivos(archivo_dos)
+

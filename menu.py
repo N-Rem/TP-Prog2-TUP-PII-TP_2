@@ -7,8 +7,7 @@ def menu_profesor():
         if (op_prof.isdigit()):
             op_prof = int(op_prof)
             if op_prof == 1: #!!!---- con el indice se busca el objeto y se llama al metodo .Dictar_curso()
-                ob.profesores_registrados[indice].Dictar_curso()#!!!---- CREA UN CUSRO.
-
+                ob.profesores_registrados[indice].Dictar_curso()#!!!---- CREA UN CUSRO. 
             elif op_prof == 2:
                 ob.mostrar_mis_cursos(ob.profesores_registrados,indice)#!!!--- Muestra los cursos del Profesor, 
                 op_prof = input("Seleciones un curso.\n")
@@ -17,6 +16,17 @@ def menu_profesor():
                     if (op_prof >= 1 or op_prof <= len(ob.profesores_registrados[indice].get_mis_cursos())):
                         #!!!---ListaProfesores[indice] nos da el objeto Prof, .get_mis_cursos()[indice] nos da el objeto Curso que se eligio--
                         print(ob.profesores_registrados[indice].get_mis_cursos()[op_prof-1]) #!!!----imprime en nombre del curso y la contraseña
+                        #print("Cantidad de archivos: "+ len(ob.profesores_registrados[indice].get_mis_cursos()[op_prof-1].get_archivos()))
+                        ingresa_archivo = input("¿Desea ingresar un archivo? S/N")
+                        
+                        while(ingresa_archivo!="s"and ingresa_archivo!="S"and ingresa_archivo!="n" and ingresa_archivo!="N" ):
+                            ingresa_archivo = input("Desea ingresar un archivo) SI/NO")
+                        
+                        if(ingresa_archivo=="s" or ingresa_archivo=="S"):
+                            archivo_nombre = input ("Ingresar el nombre del archivo:")
+                            archivo_formato = input ("Ingresar formato archivo:")
+                            ob.profesores_registrados[indice].get_mis_cursos()[op_prof-1].Ingresar_archivo( archivo_nombre,archivo_formato)
+                            len(ob.profesores_registrados[indice].get_mis_cursos()[op_prof-1].get_archivos())
                     else:
                         print("Ingrese una opcion valida.. \n")
                 else: 
@@ -80,8 +90,27 @@ def menu_alumno():
                 print("Opcion no valida")
         else:
             print("Debe ser un numero entero")
-
-##!!! -----menu------
+#!!! -----menu alumno------
+def admin():
+    nombre = str(input("Nombre del profesor: "))
+    while(nombre==""):
+        nombre = str(input("Nombre del profesor(no puede estar vacio): "))
+    apellido = str(input("Apellido del profesor: "))
+    while(apellido==""):
+        apellido = str(input("Apellido del profesor(no puede estar vacio):"))
+    contrasenia = str(input("Ingresar contraseña: "))
+    while(contrasenia==""):
+        contrasenia = str(input("Ingresar contraseña(no puede estar vacio): "))
+    titulo = str(input("Titulo:"))
+    while(titulo==""):
+        titulo = str(input("Titulo(no puede estar vacio):"))
+    anio_egreso = int(input("Años de egreso:"))
+    while(anio_egreso==""):
+        anio_egreso = int(input("Años de egreso(no puede estar vacio):"))
+    
+    nuevo_profesor = ob.Profesor(nombre, apellido ,mail, contrasenia,titulo,anio_egreso)
+    ob.profesores_registrados.append(nuevo_profesor)
+##!!! -----menu----
 op = 0
 while (op != 4):
     op = input(
@@ -111,8 +140,15 @@ while (op != 4):
                     menu_profesor()
                 else:
                     print("Error de ingreso.\n")
+            elif(mail=="admin"):
+                print(" \n\t\t--ALTA  NUEVO PROFESOR--\n\n" )
+                mail = input("Ingresar E-mail del profesor: ")
+                if not (ob.existencia_alumno(mail,ob.profesores_registrados)):
+                    admin()
+                else:
+                    print("el profesor ya existe.....")
             else:
-                print("debe darse de alta en profesorado.....\n")
+                print("debe darse de alta.....\n")
         #!------Op Tres-----
         elif (op == 3):
             print("\n\t\t--Ver Curso--")
