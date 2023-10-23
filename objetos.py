@@ -168,6 +168,7 @@ class Carrera():
         self.__cant_anios = cant_anios
         self.__cantidad_materias = cantidad_materias
         self.__alumnos = []
+        self.__cursos = []
 
     def get_nombre(self):
         return self.__nombre
@@ -185,6 +186,12 @@ class Carrera():
         return self.__alumnos 
     def set_alumnos(self, alumnos):
         self.__alumnos.append(alumnos)
+        
+    def get_cursos(self):
+        return self.__cursos
+    def set_cursos(self,cursos):
+        self.__cursos.append(cursos)
+    
         
 
 #!__________Archivo______________
@@ -230,6 +237,8 @@ def existencia_alumno(mail=str,registrados=list):
 alumno_uno = Estudiante("Lautaro", "Vega", "Lautaro.vega@gmail.com", "2424a", 5858, 2023)
 alumno_dos = Estudiante("Maria", "Gomez", "Maria.g@gmail.com", "1234a", 5050, 2022)
 alumno_tres = Estudiante("Victoria", "Sosa", "Vicky.ss@gmail.com", "2444a", 3030, 2023)
+alumno_cuatro = Estudiante("Fabri", "Sola", "fabri.s@gmail.com", "444a", 4030, 2023)
+
 alumnos_registrados.append(alumno_uno)
 alumnos_registrados.append(alumno_dos)
 alumnos_registrados.append(alumno_tres)
@@ -266,39 +275,31 @@ alumno_tres.set_mis_cursos(curso_uno)
 alumno_tres.set_mis_cursos(curso_dos)
 alumno_tres.set_mis_cursos(curso_tres)
 
-<<<<<<< Updated upstream
-# mostrar_mis_cursos(alumnos_registrados, 0)
-# mostrar_mis_cursos(alumnos_registrados,1)
-# mostrar_mis_cursos(alumnos_registrados,2)
 
-# mostrar_mis_cursos(profesores_registrados,0)
-
-# print(alumno_tres.get_email())
-# print(curso_uno)
-
-
-# profesor.set_mis_cursos(
-
-archivo_uno = Archivo("java", "pfd")
-archivo_dos = Archivo("JS", "pfd")
-=======
 archivo_uno = Archivo("java", "12/3/23", "pfd")
 archivo_dos = Archivo("JS", "5/4/23", "pfd")
->>>>>>> Stashed changes
+
 
 curso_uno.set_archivos(archivo_uno)
 curso_uno.set_archivos(archivo_dos)
 
 #!-------------------Crea Carrea-------
 carrera_uno = Carrera("Tecnicatura I","3",3)
-carrera_uno.set_alumnos(curso_uno)
-carrera_uno.set_alumnos(curso_dos)
-carrera_uno.set_alumnos(curso_tres)
+carrera_uno.set_cursos(curso_uno)
+carrera_uno.set_cursos(curso_dos)
+carrera_uno.set_cursos(curso_tres)
+
+carrera_uno.set_alumnos(alumno_tres)
+carrera_uno.set_alumnos(alumno_cuatro)
+
 
 carrera_dos = Carrera("tecnicatura II", "2",3)
-carrera_dos.set_alumnos(curso_cinco)
-carrera_dos.set_alumnos(curso_seis)
-carrera_dos.set_alumnos(curso_cuatro)
+carrera_dos.set_cursos(curso_cinco)
+carrera_dos.set_cursos(curso_seis)
+carrera_dos.set_cursos(curso_cuatro)
+
+carrera_dos.set_alumnos(alumno_uno)
+carrera_dos.set_alumnos(alumno_dos)
 
 
 
