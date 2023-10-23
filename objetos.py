@@ -276,8 +276,8 @@ alumno_tres.set_mis_cursos(curso_dos)
 alumno_tres.set_mis_cursos(curso_tres)
 
 
-archivo_uno = Archivo("java", "12/3/23", "pfd")
-archivo_dos = Archivo("JS", "5/4/23", "pfd")
+archivo_uno = Archivo("java", "pfd")
+archivo_dos = Archivo("JS", "pfd")
 
 
 curso_uno.set_archivos(archivo_uno)
