@@ -16,9 +16,9 @@ def menu_profesor():
                     if (op_prof >= 1 or op_prof <= len(ob.profesores_registrados[indice].get_mis_cursos())):
                         #!!!---ListaProfesores[indice] nos da el objeto Prof, .get_mis_cursos()[indice] nos da el objeto Curso que se eligio--
                         print(ob.profesores_registrados[indice].get_mis_cursos()[op_prof-1]) #!!!----imprime en nombre del curso y la contraseña
-                        #print("Cantidad de archivos: "+ len(ob.profesores_registrados[indice].get_mis_cursos()[op_prof-1].get_archivos()))
-                        ingresa_archivo = input("¿Desea ingresar un archivo? S/N")
+                        print(f"\n     \tCantidad de archivos:{len(ob.profesores_registrados[indice].get_mis_cursos()[op_prof-1].get_archivos())}")
                         
+                        ingresa_archivo = input("¿Desea ingresar un archivo? S/N")
                         while(ingresa_archivo!="s"and ingresa_archivo!="S"and ingresa_archivo!="n" and ingresa_archivo!="N" ):
                             ingresa_archivo = input("Desea ingresar un archivo) SI/NO")
                         
@@ -26,7 +26,6 @@ def menu_profesor():
                             archivo_nombre = input ("Ingresar el nombre del archivo:")
                             archivo_formato = input ("Ingresar formato archivo:")
                             ob.profesores_registrados[indice].get_mis_cursos()[op_prof-1].Ingresar_archivo( archivo_nombre,archivo_formato)
-                            len(ob.profesores_registrados[indice].get_mis_cursos()[op_prof-1].get_archivos())
                     else:
                         print("Ingrese una opcion valida.. \n")
                 else: 

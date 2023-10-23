@@ -112,7 +112,8 @@ class Profesor(Usuario):
         self.__mis_cursos.append(nuevo_curso)
         lista_cursos.append(nuevo_curso)
         print(nuevo_curso)
-        
+
+    
 # !_____________________
 class Curso (): #!!cursos es un objeto que no depende de los otros. 
     __codigo = 0
@@ -143,7 +144,7 @@ class Curso (): #!!cursos es un objeto que no depende de los otros.
     #!<------------------------------------
 
     def __str__(self):
-        return f"   \tCurso: Nombre = {self.__nombre} \n   \tContraseña de Matriculacion = {self.__contrasenia_matriculacion}\n     \tCodigo: {Curso.__codigo}"
+        return f"   \tCurso: \n   \tNombre = {self.__nombre} \n   \tContraseña de Matriculacion = {self.__contrasenia_matriculacion}\n     \tCodigo: {Curso.__codigo}"
 
     def __generar_contrasenia(self): #!!Fun que crea contraseñas de matriculacion. 
         l_random = random.randint(0,26)
@@ -267,8 +268,8 @@ alumno_tres.set_mis_cursos(curso_tres)
 
 # profesor.set_mis_cursos(
 
-archivo_uno = Archivo("java", "12/3/23", "pfd")
-archivo_dos = Archivo("JS", "5/4/23", "pfd")
+archivo_uno = Archivo("java", "pfd")
+archivo_dos = Archivo("JS", "pfd")
 
 curso_uno.set_archivos(archivo_uno)
 curso_uno.set_archivos(archivo_dos)
