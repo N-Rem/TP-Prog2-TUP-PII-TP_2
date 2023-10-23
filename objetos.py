@@ -95,14 +95,11 @@ class Profesor(Usuario):
         print(nuevo_curso)
 # !_____________________
 class Curso (): #!!cursos es un objeto que no depende de los otros. 
-    codigo_curso=0
     def __init__(self, nombre=str): #!! solo se le pasa el nombre
         self.__nombre = nombre
         self.__contrasenia_matriculacion = self.__generar_contrasenia() #!!! cuando se crea el curso (solo con el nombre) se activa la fun generar_contraceña
-        self.__mis_archivos = [] #!!---Este es para la segunda parte del tp. (ahora Creo que no hay que hacer nada)
-        self.__cantidad_archivos = len(self.__mis_archivos)
-        self.__codigo= Curso.codigo_curso #!----siempre es un codigo difernete para cada objeto.-------
-        Curso.codigo_curso+=1
+        self.__archivos = [] #!!---Este es para la segunda parte del tp. (ahora Creo que no hay que hacer nada)
+    
     #!set, get nombre y archivos
     def get_nombre(self):
         return self.__nombre
@@ -113,16 +110,13 @@ class Curso (): #!!cursos es un objeto que no depende de los otros.
         return self.__contrasenia_matriculacion
         
     def get_archivos(self):
-        return self.__mis_archivos
+        return self.__archivos
     def set_archivos(self, archivos =str):
-        self.__mis_archivos.append(archivos)
-    
-    def get_codigo(self):
-        return self.__codigo
+        self.__archivos.append(archivos)
     #!<------------------------------------
 
     def __str__(self):
-        return f"Curso: Nombre = {self.__nombre}, Codigo = {self.__codigo}, Contraseña de Matriculacion = {self.__contrasenia_matriculacion}, Cantidad de Archivos = {self.__cantidad_archivos}"
+        return f"Curso: Nombre = {self.__nombre}, Contraseña de Matriculacion = {self.__contrasenia_matriculacion}"
 
     def __generar_contrasenia(self): #!!Fun que crea contraseñas de matriculacion. 
         l_random = random.randint(0,26)
@@ -141,6 +135,8 @@ class Carrera():
         self.__nombre = nombre
         self.__cant_anios = cant_anios
         self.__cantidad_materias = cantidad_materias
+        self.__alumnos = []
+        
     
     def get_nombre(self):
         return self.__nombre
@@ -153,6 +149,9 @@ class Carrera():
     
     def get_cantidad_aterias(self):
         return self.__cantidad_materias
+    
+    def get_alumnos(self):
+        return self.__alumnos 
         
 
 #!__________Archivo______________
