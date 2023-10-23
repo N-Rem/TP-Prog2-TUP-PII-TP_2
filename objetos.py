@@ -2,6 +2,7 @@ import random
 alumnos_registrados = []
 profesores_registrados = []
 lista_cursos = []
+
 class Usuario(): #!!!---Super clase
     def __init__(self, nombre=str, apellido=str, email=str, contrasenia=str): #!--- se ponde =str para remarcar que el valor del atributo tiene que ser en este caso String
         self.__nombre = nombre
@@ -77,14 +78,14 @@ class Profesor(Usuario):
         self.__titulo = titulo
         self.__anio_egreso = anio_egreso
         self.__mis_cursos = []
-
+        
     def get_mis_cursos(self):
         return self.__mis_cursos
     def set_mis_cursos(self, curso=object):
         self.__mis_cursos.append(curso)
 
     def __str__(self):
-        return "Profesor: " + super().__str__() + f", Titulo = {self.__titulo}, Año de Egreso = {self.__anio_egreso}"
+        return "Profesor: " + super().__str__() + f", Titulo = {self.__titulo}  ,  Año de Egreso = {self.__anio_egreso} , "
 
     def Dictar_curso(self): #!!!--- Funcion que crea cursos.
         nombre = input("Ingrese el nombre del curso: ")
@@ -92,16 +93,15 @@ class Profesor(Usuario):
         self.__mis_cursos.append(nuevo_curso)
         lista_cursos.append(nuevo_curso)
         print(nuevo_curso)
-       
+        
 # !_____________________
 class Curso (): #!!cursos es un objeto que no depende de los otros. 
+    __codigo = 0
     def __init__(self, nombre=str): #!! solo se le pasa el nombre
         self.__nombre = nombre
         self.__contrasenia_matriculacion = self.__generar_contrasenia() #!!! cuando se crea el curso (solo con el nombre) se activa la fun generar_contraceña
         self.__archivos = [] #!!---Este es para la segunda parte del tp. (ahora Creo que no hay que hacer nada)
-        self.__codigo =  self.__codigo + 1
-        self.__proximo = self.__codigo
-        
+        Curso.__codigo += 1
     #!set, get nombre y archivos
     def get_nombre(self):
         return self.__nombre
@@ -124,7 +124,7 @@ class Curso (): #!!cursos es un objeto que no depende de los otros.
     #!<------------------------------------
 
     def __str__(self):
-        return f"Curso: Nombre = {self.__nombre}, Contraseña de Matriculacion = {self.__contrasenia_matriculacion}"
+        return f"   \tCurso: Nombre = {self.__nombre} \n   \tContraseña de Matriculacion = {self.__contrasenia_matriculacion}\n     \tCodigo: {Curso.__codigo}"
 
     def __generar_contrasenia(self): #!!Fun que crea contraseñas de matriculacion. 
         l_random = random.randint(0,26)
@@ -143,7 +143,7 @@ class Carrera():
         self.__nombre = nombre
         self.__cant_anios = cant_anios
         self.__cantidad_materias = cantidad_materias
-    
+        
     def get_nombre(self):
         return self.__nombre
     

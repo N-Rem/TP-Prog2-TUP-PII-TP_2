@@ -7,8 +7,7 @@ def menu_profesor():
         if (op_prof.isdigit()):
             op_prof = int(op_prof)
             if op_prof == 1: #!!!---- con el indice se busca el objeto y se llama al metodo .Dictar_curso()
-                ob.profesores_registrados[indice].Dictar_curso()#!!!---- CREA UN CUSRO.
-
+                ob.profesores_registrados[indice].Dictar_curso()#!!!---- CREA UN CUSRO. 
             elif op_prof == 2:
                 ob.mostrar_mis_cursos(ob.profesores_registrados,indice)#!!!--- Muestra los cursos del Profesor, 
                 op_prof = input("Seleciones un curso.\n")
