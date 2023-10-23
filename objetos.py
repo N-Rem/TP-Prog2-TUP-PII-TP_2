@@ -167,7 +167,6 @@ class Carrera():
         self.__nombre = nombre
         self.__cant_anios = cant_anios
         self.__cantidad_materias = cantidad_materias
-
         self.__alumnos = []
 
     def get_nombre(self):
@@ -184,6 +183,8 @@ class Carrera():
     
     def get_alumnos(self):
         return self.__alumnos 
+    def set_alumnos(self, alumnos):
+        self.__alumnos.append(alumnos)
         
 
 #!__________Archivo______________
@@ -232,6 +233,7 @@ alumno_tres = Estudiante("Victoria", "Sosa", "Vicky.ss@gmail.com", "2444a", 3030
 alumnos_registrados.append(alumno_uno)
 alumnos_registrados.append(alumno_dos)
 alumnos_registrados.append(alumno_tres)
+#!------------------------------------------Profesores---
 
 prof_uno = Profesor("Gustavo", "Ramirez","Gustavo.Ramirez@gmail.com", "3883a", "Ingeniero", 2005)
 prof_dos = Profesor("Bettiana", "Azul","bettiana.123@gmail.com", "1010a", "Ingeniera", 2000)
@@ -240,12 +242,20 @@ profesores_registrados.append(prof_uno)
 profesores_registrados.append(prof_dos)
 profesores_registrados.append(prof_tres)
 
+#!-----------------------Cusos--------
 curso_uno = Curso("Programacion I")
 curso_dos = Curso("Matematicas")
-curso_tres = Curso("Estadistica")
+curso_tres = Curso("Arquitectura")
+curso_cuatro = Curso("Programacion II")
+curso_cinco = Curso("Estadistica")
+curso_seis = Curso("Analisis I")
+
 lista_cursos.append(curso_uno)
 lista_cursos.append(curso_dos)
 lista_cursos.append(curso_tres)
+lista_cursos.append(curso_cuatro)
+lista_cursos.append(curso_cinco)
+lista_cursos.append(curso_seis)
 
 #!!!----- se agrega algunso cursos a algunos profesores y alumos ----
 prof_uno.set_mis_cursos(curso_tres)
@@ -256,6 +266,7 @@ alumno_tres.set_mis_cursos(curso_uno)
 alumno_tres.set_mis_cursos(curso_dos)
 alumno_tres.set_mis_cursos(curso_tres)
 
+<<<<<<< Updated upstream
 # mostrar_mis_cursos(alumnos_registrados, 0)
 # mostrar_mis_cursos(alumnos_registrados,1)
 # mostrar_mis_cursos(alumnos_registrados,2)
@@ -270,7 +281,24 @@ alumno_tres.set_mis_cursos(curso_tres)
 
 archivo_uno = Archivo("java", "pfd")
 archivo_dos = Archivo("JS", "pfd")
+=======
+archivo_uno = Archivo("java", "12/3/23", "pfd")
+archivo_dos = Archivo("JS", "5/4/23", "pfd")
+>>>>>>> Stashed changes
 
 curso_uno.set_archivos(archivo_uno)
 curso_uno.set_archivos(archivo_dos)
+
+#!-------------------Crea Carrea-------
+carrera_uno = Carrera("Tecnicatura I","3",3)
+carrera_uno.set_alumnos(curso_uno)
+carrera_uno.set_alumnos(curso_dos)
+carrera_uno.set_alumnos(curso_tres)
+
+carrera_dos = Carrera("tecnicatura II", "2",3)
+carrera_dos.set_alumnos(curso_cinco)
+carrera_dos.set_alumnos(curso_seis)
+carrera_dos.set_alumnos(curso_cuatro)
+
+
 
