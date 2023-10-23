@@ -1,7 +1,9 @@
 import random
+from datetime import date
 alumnos_registrados = []
 profesores_registrados = []
 lista_cursos = []
+lista_archivo = []
 
 class Usuario(): #!!!---Super clase
     def __init__(self, nombre=str, apellido=str, email=str, contrasenia=str): #!--- se ponde =str para remarcar que el valor del atributo tiene que ser en este caso String
@@ -119,7 +121,7 @@ class Curso (): #!!cursos es un objeto que no depende de los otros.
         
     def get_archivos(self):
         return self.__archivos
-    def set_archivos(self, archivos =str):
+    def set_archivos(self, archivos):
         self.__archivos.append(archivos)
     #!<------------------------------------
 
@@ -136,7 +138,11 @@ class Curso (): #!!cursos es un objeto que no depende de los otros.
         contracenia = f"{nums[n_random]}{abc[l_random]}{nums[n_random]}{abc[l_random]}{nums[n_random]}{abc[l_random]}"
         return  contracenia      
 
-   
+    def Ingresar_archivo(self,archivo):
+        nuevo_archivo= Archivo(archivo)
+        self.__archivos.append(nuevo_archivo)
+        lista_archivo.append(nuevo_archivo)
+        print(nuevo_archivo)
 #!__________Carrera______________
 class Carrera():
     def __init__(self, nombre=str, cant_anios=str, cantidad_materias = int):
@@ -159,9 +165,9 @@ class Carrera():
 
 #!__________Archivo______________
 class Archivo():
-    def __init__(self, nombre = str, fecha = str, formato = str):
+    def __init__(self, nombre = str, formato = str):
         self.__nombre = nombre
-        self.__fecha = fecha
+        self.__fecha = date.today()
         self.__formato = formato
         
     def __str__(self):
