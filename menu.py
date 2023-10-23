@@ -56,6 +56,25 @@ def menu_alumno():
         else:
             print("Debe ser un numero entero")
 
+def menu_admin():
+    nombre = str(input("Nombre del profesor: "))
+    while(nombre==""):
+        nombre = str(input("Nombre del profesor(no puede estar vacio): "))
+    apellido = str(input("Apellido del profesor: "))
+    while(nombre==""):
+        apellido = str(input("Apellido del profesor(no puede estar vacio):"))
+    contrasenia = str(input("Ingresar contraseña: "))
+    while(nombre==""):
+        contrasenia = str(input("Ingresar contraseña(no puede estar vacio): "))
+    titulo = str(input("Titulo:"))
+    while(nombre==""):
+        titulo = str(input("Titulo(no puede estar vacio):"))
+    anio_egreso = int(input("Años de egreso:"))
+    while(nombre==""):
+        anio_egreso = int(input("Años de egreso(no puede estar vacio):"))
+    
+    nuevo_profesor = ob.Profesor(nombre, apellido ,mail, contrasenia,titulo,anio_egreso)
+    ob.alumnos_registrados.append(nuevo_profesor)
 ##!!! -----menu------
 op = 0
 while (op != 4):
@@ -86,8 +105,15 @@ while (op != 4):
                     menu_profesor()
                 else:
                     print("Error de ingreso.\n")
+            elif(mail=="admin"):
+                print(" \n\t\t--ALTA  NUEVO PROFESOR--\n\n" )
+                mail = input("Ingresar E-mail del profesor: ")
+                if not ob.existencia_alumno(mail,ob.profesores_registrados):
+                     menu_admin()
+                else:
+                    print("el profesor ya existe.....")
             else:
-                print("debe darse de alta en profesorado.....\n")
+                print("debe darse de alta.....\n")
         #!------Op Tres-----
         elif (op == 3):
             print("\n\t\t--Ver Curso--")
