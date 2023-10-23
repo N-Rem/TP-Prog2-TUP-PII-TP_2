@@ -2,7 +2,6 @@ import random
 alumnos_registrados = []
 profesores_registrados = []
 lista_cursos = []
-
 class Usuario(): #!!!---Super clase
     def __init__(self, nombre=str, apellido=str, email=str, contrasenia=str): #!--- se ponde =str para remarcar que el valor del atributo tiene que ser en este caso String
         self.__nombre = nombre
@@ -93,19 +92,28 @@ class Profesor(Usuario):
         self.__mis_cursos.append(nuevo_curso)
         lista_cursos.append(nuevo_curso)
         print(nuevo_curso)
+       
 # !_____________________
 class Curso (): #!!cursos es un objeto que no depende de los otros. 
     def __init__(self, nombre=str): #!! solo se le pasa el nombre
         self.__nombre = nombre
         self.__contrasenia_matriculacion = self.__generar_contrasenia() #!!! cuando se crea el curso (solo con el nombre) se activa la fun generar_contraceña
         self.__archivos = [] #!!---Este es para la segunda parte del tp. (ahora Creo que no hay que hacer nada)
-    
+        self.__codigo =  self.__codigo + 1
+        self.__proximo = self.__codigo
+        
     #!set, get nombre y archivos
     def get_nombre(self):
         return self.__nombre
     def set_nombre(self, nombre=str):
         self.__nombre = nombre
     
+    def get_codigo(self):
+        return self.__codigo
+    
+    def set_codigo(self, codigo=int):
+        self.__codigo = codigo
+
     def get_contrasenia (self):
         return self.__contrasenia_matriculacion
         
@@ -184,12 +192,10 @@ def mostrar_cursos(lista = list): #!!! muestra todos los cursos que estan anotad
 
 def existencia_alumno(mail=str,registrados=list):
     for i in registrados:  
-        print(i.get_email())
         obtener_email = i.get_email()
         if (obtener_email==mail):
             return True
     return False
-
 #!---------Creacion de Objetos-----------Crea Estudiantes/profesores/y cursos y los agrega a la listas (la que estan arriba de todo)
 alumno_uno = Estudiante("Lautaro", "Vega", "Lautaro.vega@gmail.com", "2424a", 5858, 2023)
 alumno_dos = Estudiante("Maria", "Gomez", "Maria.g@gmail.com", "1234a", 5050, 2022)
@@ -229,3 +235,5 @@ alumno_tres.set_mis_cursos(curso_tres)
 
 # print(alumno_tres.get_email())
 # print(curso_uno)
+
+# profesor.set_mis_cursos(
