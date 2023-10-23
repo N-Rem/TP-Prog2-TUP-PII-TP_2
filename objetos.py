@@ -58,7 +58,7 @@ class Estudiante(Usuario):
     def __str__(self):
         return "Estudiante: " + super().__str__() + f", Legajo = {self.__legajo}, Año Inscripcion en la Carrera = {self.__anio_inscripcion_carrera}"
 
-    def Matricular_en_curso(self, curso: object, contrasenia=str):
+    def Matricular_en_curso(self, curso= object, contrasenia=str):
         if (buscar_curso(curso.get_nombre(), self.__mis_cursos)):  #!!!--- se usa la fun buscar_curso para validar si ya tiene ese curso o no.
             print(f"Usted ya estaba anotado en {curso.get_nombre()}") #!!!--- curso.get_nombre nos da solo el nombre del curso que ya esta anotado
         else:
@@ -66,7 +66,24 @@ class Estudiante(Usuario):
                 self.__mis_cursos.append(curso)
                 print(f"Materia: {curso.get_nombre()} agregada a Mis Cursos..")#!!!--- se informa
             else:
-                print("Contraseña no valida..")       
+                print("Contraseña no valida..")
+                   
+    def Desmatricular (self, curso = object, confirm = str):
+        if (confirm == "s"):
+            for i, obj in enumerate(self.__mis_cursos):
+                if obj == curso:
+                    print(f"Se borro el curso: {self.__mis_cursos[i].get_nombre()}")
+                    del self.__mis_cursos[i]
+        else: 
+            print("No se Borro ningun curso..")
+    def Mostrar_archivos(self, indice): 
+       curso = self.__mis_cursos[indice]
+       print (f"\n\n\t\t{curso.get_nombre()}")
+       for i in curso.get_archivos():
+           print (i)
+           
+        
+                   
 #--
 def buscar_curso(curso=str, lista=list):
     for i in lista:
@@ -149,7 +166,9 @@ class Carrera():
         self.__nombre = nombre
         self.__cant_anios = cant_anios
         self.__cantidad_materias = cantidad_materias
-        
+
+        self.__alumnos = []
+
     def get_nombre(self):
         return self.__nombre
     
@@ -161,6 +180,9 @@ class Carrera():
     
     def get_cantidad_aterias(self):
         return self.__cantidad_materias
+    
+    def get_alumnos(self):
+        return self.__alumnos 
         
 
 #!__________Archivo______________
@@ -171,7 +193,7 @@ class Archivo():
         self.__formato = formato
         
     def __str__(self):
-        return f"Archivo: Nombre = {self.__nombre}, Fecha = {self.__fecha}, Formato = {self.__formato}"
+        return f"Archivo\nNombre = {self.__nombre}\nFecha = {self.__fecha}\nFormato = {self.__formato}\n"
 
 
 
@@ -242,4 +264,12 @@ alumno_tres.set_mis_cursos(curso_tres)
 # print(alumno_tres.get_email())
 # print(curso_uno)
 
+
 # profesor.set_mis_cursos(
+
+archivo_uno = Archivo("java", "12/3/23", "pfd")
+archivo_dos = Archivo("JS", "5/4/23", "pfd")
+
+curso_uno.set_archivos(archivo_uno)
+curso_uno.set_archivos(archivo_dos)
+

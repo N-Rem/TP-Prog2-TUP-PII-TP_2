@@ -40,8 +40,8 @@ def menu_profesor():
 #!!! -----menu alumno------
 def menu_alumno():
     op_alumn=0 
-    while(op_alumn!=3):
-        op_alumn = input("\n\t\t--Accedio al Sistema.--\n1. Matricularse a un curso\n2. Ver curso\n3. Volver al menú principal\n\t")
+    while(op_alumn!=4):
+        op_alumn = input("\n\t\t--Accedio al Sistema.--\n1. Matricularse a un curso\n2. Desmatricularse a un curso\n3. Ver curso\n4. Volver al menú principal\n\t")
         if (op_alumn.isdigit()):#!!!-----si es digito entra sino vuelve al menu principal.
             op_alumn = int(op_alumn)#!!!----se combierte el op en entero.
             if op_alumn == 1:
@@ -57,9 +57,34 @@ def menu_alumno():
                         print("Opcion no valida..")
                 else:
                     print("Debe ingresar un numero entero..")
-            elif op_alumn == 2: 
-                    ob.mostrar_mis_cursos(ob.alumnos_registrados, indice)#!!!-----2 opcion; solo muestra la lsita de cursos del alumno.
-            elif op_alumn == 3:
+            elif op_alumn == 2:
+                print("----\nDESMATRICULARSE-----")
+                ob.mostrar_mis_cursos(ob.alumnos_registrados, indice)#!!!-----muestra mis cursos.
+                op_alumn = input("Seleciona una opcion: ")
+                if (op_alumn.isdigit()):
+                    op_alumn = int(op_alumn)
+                    if op_alumn <= len(ob.alumnos_registrados[indice].get_mis_cursos()) and op_alumn >= 1: #!!!-----Se comprueba si se eligio bien
+                        indice_curso = op_alumn - 1 #!!!----indice de la lista mis_cusos
+                        confirm = input("¿Desea Desmatricularse del curso? s/n ") #!!!---- Se pide Confirmacion
+                        ob.alumnos_registrados[indice].Desmatricular(ob.lista_cursos[indice_curso], confirm)#!!!---se busca en la lista el alumno.Metodo(matricular_en_curso)
+                    else:
+                        print("Opcion no valida..")
+                else:
+                    print("Debe ingresar un numero entero..")
+            elif op_alumn == 3: 
+                ob.mostrar_mis_cursos(ob.alumnos_registrados, indice)#!!!-----muestra mis cursos.
+                op_alumn = input("Seleciona una opcion: ")
+                if (op_alumn.isdigit()):
+                    op_alumn = int(op_alumn)
+                    if op_alumn <= len(ob.alumnos_registrados[indice].get_mis_cursos()) and op_alumn >= 1:
+                        indice_curso = op_alumn - 1
+                        ob.alumnos_registrados[indice].Mostrar_archivos(indice_curso)
+                    else:
+                        print("Opcion no valida..")
+                else:
+                    print("Debe ingresar un numero entero..")
+                    
+            elif op_alumn == 4:
                 print("Vuelve al menu principal")
             else:
                 print("Opcion no valida")
