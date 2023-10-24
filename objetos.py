@@ -85,9 +85,12 @@ class Estudiante(Usuario):
             for i, obj in enumerate(self.__mis_cursos):
                 if obj == curso:
                     print(f"Se borro el curso: {self.__mis_cursos[i].get_nombre()}")
+                    print(self.__mis_cursos[i])
                     del self.__mis_cursos[i]
+                    
         else: 
             print("No se Borro ningun curso..")
+
     def Mostrar_archivos(self, indice): 
        curso = self.__mis_cursos[indice]
        print (f"\n\n\t\t{curso.get_nombre()}")
@@ -263,7 +266,6 @@ prof_tres = Profesor("Veronica", "Zanches","Veronica.z@gmail.com", "5050b", "Ing
 profesores_registrados.append(prof_uno)
 profesores_registrados.append(prof_dos)
 profesores_registrados.append(prof_tres)
-
 
 #!-----------------------Cusos--------
 curso_uno = Curso("Programacion I")

@@ -65,7 +65,7 @@ def menu_alumno():
                     if op_alumn <= len(ob.alumnos_registrados[indice].get_mis_cursos()) and op_alumn >= 1: #!!!-----Se comprueba si se eligio bien
                         indice_curso = op_alumn - 1 #!!!----indice de la lista mis_cusos
                         confirm = input("¿Desea Desmatricularse del curso? s/n ") #!!!---- Se pide Confirmacion
-                        ob.alumnos_registrados[indice].Desmatricular(ob.lista_cursos[indice_curso], confirm)#!!!---se busca en la lista el alumno.Metodo(matricular_en_curso)
+                        ob.alumnos_registrados[indice].Desmatricular(ob.alumnos_registrados[indice].get_mis_cursos()[indice_curso], confirm)#!!!---se busca en la lista el alumno.Metodo(matricular_en_curso)
                     else:
                         print("Opcion no valida..")
                 else:
