@@ -63,8 +63,20 @@ class Estudiante(Usuario):
             print(f"Usted ya estaba anotado en {curso.get_nombre()}") #!!!--- curso.get_nombre nos da solo el nombre del curso que ya esta anotado
         else:
             if (contrasenia == curso.get_contrasenia()): #!!si la contraseña es igual se agrega el objeto curso a mis_cursos[]
-                self.__mis_cursos.append(curso)
-                print(f"Materia: {curso.get_nombre()} agregada a Mis Cursos..")#!!!--- se informa
+                if(buscar_curso(curso.get_nombre(), carrera_uno.get_cursos()) ):    
+                    if(buscar_curso(self.get_nombre(), carrera_uno.get_alumnos())):
+                        self.__mis_cursos.append(curso)
+                        print(f"Materia: {curso.get_nombre()} agregada a Mis Cursos..")#!!!--- se informa
+                    else:
+                        print("el alumno no se encontro en la carrera....")
+                elif (buscar_curso(curso.get_nombre(), carrera_dos.get_cursos()) ):    
+                    if(buscar_curso(self.get_nombre(), carrera_dos.get_alumnos())):
+                        self.__mis_cursos.append(curso)
+                        print(f"Materia: {curso.get_nombre()} agregada a Mis Cursos..")#!!!--- se informa
+                    else:
+                        print("el alumno no se encontro en la carrera....")
+                else:
+                    print("--------------no se encontro el alumno en inigun curso-----")
             else:
                 print("Contraseña no valida..")
                    
@@ -242,6 +254,7 @@ alumno_cuatro = Estudiante("Fabri", "Sola", "fabri.s@gmail.com", "444a", 4030, 2
 alumnos_registrados.append(alumno_uno)
 alumnos_registrados.append(alumno_dos)
 alumnos_registrados.append(alumno_tres)
+alumnos_registrados.append(alumno_cuatro)
 #!------------------------------------------Profesores---
 
 prof_uno = Profesor("Gustavo", "Ramirez","Gustavo.Ramirez@gmail.com", "3883a", "Ingeniero", 2005)
@@ -250,6 +263,7 @@ prof_tres = Profesor("Veronica", "Zanches","Veronica.z@gmail.com", "5050b", "Ing
 profesores_registrados.append(prof_uno)
 profesores_registrados.append(prof_dos)
 profesores_registrados.append(prof_tres)
+
 
 #!-----------------------Cusos--------
 curso_uno = Curso("Programacion I")
@@ -270,6 +284,7 @@ lista_cursos.append(curso_seis)
 prof_uno.set_mis_cursos(curso_tres)
 prof_dos.set_mis_cursos(curso_dos)
 prof_tres.set_mis_cursos(curso_uno)
+prof_tres.set_mis_cursos(curso_cinco)
 
 alumno_tres.set_mis_cursos(curso_uno)
 alumno_tres.set_mis_cursos(curso_dos)
