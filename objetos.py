@@ -234,7 +234,6 @@ class Archivo():
 
 # !__________funciones___________
 def mostrar_listas(lista = list): #!!! --------- Muestra la lista enumeradas para que el usuario elija.
->>>>>>> Stashed changes
     print("----------------------------")
     for i,valor in enumerate(lista):
         print(f"{i+1}. {valor.nombre}\n")
