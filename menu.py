@@ -14,9 +14,25 @@ def menu_profesor():
                 op_prof = input("Seleciones un curso.\n")
                 if op_prof.isdigit():
                     op_prof = int(op_prof)
+<<<<<<< Updated upstream
                     if (op_prof >= 1 or op_prof <= len(ob.profesores_registrados[indice].get_mis_cursos())):
                         #!!!---ListaProfesores[indice] nos da el objeto Prof, .get_mis_cursos()[indice] nos da el objeto Curso que se eligio--
                         print(ob.profesores_registrados[indice].get_mis_cursos()[op_prof-1]) #!!!----imprime en nombre del curso y la contraseña
+=======
+                    if (op_prof >= 1 or op_prof <= len(ob.profesores_registrados[indice].mis_cursos)):
+                        #!!!---ListaProfesores[indice] nos da el objeto Prof, .mis_cursos[indice] nos da el objeto Curso que se eligio--
+                        print(ob.profesores_registrados[indice].mis_cursos[op_prof-1]) #!!!----imprime en nombre del curso y la contraseña
+                        print(f"\n     \tCantidad de archivos:{len(ob.profesores_registrados[indice].mis_cursos[op_prof-1].archivos)}")
+                        
+                        ingresa_archivo = input("¿Desea ingresar un archivo? S/N")
+                        while(ingresa_archivo!="s"and ingresa_archivo!="S"and ingresa_archivo!="n" and ingresa_archivo!="N" ):
+                            ingresa_archivo = input("Desea ingresar un archivo) SI/NO")
+                        
+                        if(ingresa_archivo=="s" or ingresa_archivo=="S"):
+                            archivo_nombre = input ("Ingresar el nombre del archivo:")
+                            archivo_formato = input ("Ingresar formato archivo:")
+                            ob.profesores_registrados[indice].mis_cursos[op_prof-1].Ingresar_archivo( archivo_nombre,archivo_formato)
+>>>>>>> Stashed changes
                     else:
                         print("Ingrese una opcion valida.. \n")
                 else: 
@@ -47,9 +63,40 @@ def menu_alumno():
                         print("Opcion no valida..")
                 else:
                     print("Debe ingresar un numero entero..")
+<<<<<<< Updated upstream
             elif op_alumn == 2: 
                     ob.mostrar_mis_cursos(ob.alumnos_registrados, indice)#!!!-----2 opcion; solo muestra la lsita de cursos del alumno.
             elif op_alumn == 3:
+=======
+            elif op_alumn == 2:
+                print("----\nDESMATRICULARSE-----")
+                ob.mostrar_mis_cursos(ob.alumnos_registrados, indice)#!!!-----muestra mis cursos.
+                op_alumn = input("Seleciona una opcion: ")
+                if (op_alumn.isdigit()):
+                    op_alumn = int(op_alumn)
+                    if op_alumn <= len(ob.alumnos_registrados[indice].mis_cursos) and op_alumn >= 1: #!!!-----Se comprueba si se eligio bien
+                        indice_curso = op_alumn - 1 #!!!----indice de la lista mis_cusos
+                        confirm = input("¿Desea Desmatricularse del curso? s/n ") #!!!---- Se pide Confirmacion
+                        ob.alumnos_registrados[indice].Desmatricular(ob.alumnos_registrados[indice].mis_cursos[indice_curso], confirm)#!!!---se busca en la lista el alumno.Metodo(matricular_en_curso)
+                    else:
+                        print("Opcion no valida..")
+                else:
+                    print("Debe ingresar un numero entero..")
+            elif op_alumn == 3: 
+                ob.mostrar_mis_cursos(ob.alumnos_registrados, indice)#!!!-----muestra mis cursos.
+                op_alumn = input("Seleciona una opcion: ")
+                if (op_alumn.isdigit()):
+                    op_alumn = int(op_alumn)
+                    if op_alumn <= len(ob.alumnos_registrados[indice].mis_cursos) and op_alumn >= 1:
+                        indice_curso = op_alumn - 1
+                        ob.alumnos_registrados[indice].Mostrar_archivos(indice_curso)
+                    else:
+                        print("Opcion no valida..")
+                else:
+                    print("Debe ingresar un numero entero..")
+                    
+            elif op_alumn == 4:
+>>>>>>> Stashed changes
                 print("Vuelve al menu principal")
             else:
                 print("Opcion no valida")
