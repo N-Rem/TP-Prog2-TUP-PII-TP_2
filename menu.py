@@ -7,8 +7,7 @@ def menu_profesor():
         if (op_prof.isdigit()):
             op_prof = int(op_prof)
             if op_prof == 1: #!!!---- con el indice se busca el objeto y se llama al metodo .Dictar_curso()
-                ob.profesores_registrados[indice].Dictar_curso()#!!!---- CREA UN CUSRO.
-
+                ob.profesores_registrados[indice].Dictar_curso()#!!!---- CREA UN CUSRO. 
             elif op_prof == 2:
                 ob.mostrar_mis_cursos(ob.profesores_registrados,indice)#!!!--- Muestra los cursos del Profesor, 
                 op_prof = input("Seleciones un curso.\n")
@@ -40,8 +39,8 @@ def menu_profesor():
 #!!! -----menu alumno------
 def menu_alumno():
     op_alumn=0 
-    while(op_alumn!=3):
-        op_alumn = input("\n\t\t--Accedio al Sistema.--\n1. Matricularse a un curso\n2. Ver curso\n3. Volver al menú principal\n\t")
+    while(op_alumn!=4):
+        op_alumn = input("\n\t\t--Accedio al Sistema.--\n1. Matricularse a un curso\n2. Desmatricularse a un curso\n3. Ver curso\n4. Volver al menú principal\n\t")
         if (op_alumn.isdigit()):#!!!-----si es digito entra sino vuelve al menu principal.
             op_alumn = int(op_alumn)#!!!----se combierte el op en entero.
             if op_alumn == 1:
@@ -90,8 +89,27 @@ def menu_alumno():
                 print("Opcion no valida")
         else:
             print("Debe ser un numero entero")
-
-##!!! -----menu------
+#!!! -----menu alumno------
+def admin():
+    nombre = str(input("Nombre del profesor: "))
+    while(nombre==""):
+        nombre = str(input("Nombre del profesor(no puede estar vacio): "))
+    apellido = str(input("Apellido del profesor: "))
+    while(apellido==""):
+        apellido = str(input("Apellido del profesor(no puede estar vacio):"))
+    contrasenia = str(input("Ingresar contraseña: "))
+    while(contrasenia==""):
+        contrasenia = str(input("Ingresar contraseña(no puede estar vacio): "))
+    titulo = str(input("Titulo:"))
+    while(titulo==""):
+        titulo = str(input("Titulo(no puede estar vacio):"))
+    anio_egreso = int(input("Años de egreso:"))
+    while(anio_egreso==""):
+        anio_egreso = int(input("Años de egreso(no puede estar vacio):"))
+    
+    nuevo_profesor = ob.Profesor(nombre, apellido ,mail, contrasenia,titulo,anio_egreso)
+    ob.profesores_registrados.append(nuevo_profesor)
+##!!! -----menu----
 op = 0
 while (op != 4):
     op = input(
@@ -121,8 +139,15 @@ while (op != 4):
                     menu_profesor()
                 else:
                     print("Error de ingreso.\n")
+            elif(mail=="admin"):
+                print(" \n\t\t--ALTA  NUEVO PROFESOR--\n\n" )
+                mail = input("Ingresar E-mail del profesor: ")
+                if not (ob.existencia_alumno(mail,ob.profesores_registrados)):
+                    admin()
+                else:
+                    print("el profesor ya existe.....")
             else:
-                print("debe darse de alta en profesorado.....\n")
+                print("debe darse de alta.....\n")
         #!------Op Tres-----
         elif (op == 3):
             print("\n\t\t--Ver Curso--")

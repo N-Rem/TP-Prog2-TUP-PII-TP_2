@@ -82,6 +82,7 @@ class Estudiante(Usuario):
                     if(buscar_curso(self.nombre, tecnicatura_dos.alumnos())):
                         self.__mis_cursos.append(curso)
                         print(f"Materia: {curso.nombre} agregada a Mis Cursos..")#!!!--- se informa
+
                     else:
                         print("el alumno no se encontro en la carrera....")
                 else:
@@ -121,13 +122,14 @@ class Profesor(Usuario):
         
     @property
     def mis_cursos(self):
+
         return self.__mis_cursos
     @mis_cursos.setter
     def mis_cursos(self, curso=object):
         self.__mis_cursos.append(curso)
 
     def __str__(self):
-        return "Profesor: " + super().__str__() + f", Titulo = {self.__titulo}, Año de Egreso = {self.__anio_egreso}"
+        return "Profesor: " + super().__str__() + f", Titulo = {self.__titulo}  ,  Año de Egreso = {self.__anio_egreso} , "
 
     def Dictar_curso(self): #!!!--- agrega nuevos cursos para dictar.
         nombre = input("Ingrese el nombre del curso: ")
@@ -171,7 +173,7 @@ class Curso (): #!!no depende de los otros.
     #!<------------------------------------
 
     def __str__(self):
-        return f"Curso: Nombre = {self.__nombre}, Contraseña de Matriculacion = {self.__contrasenia_matriculacion}"
+        return f"   \tCurso: \n   \tNombre = {self.__nombre} \n   \tContraseña de Matriculacion = {self.__contrasenia_matriculacion}\n     \tCodigo: {Curso.__codigo}"
 
     def __generar_contrasenia(self): #!crea contraseñas matriculacion. 
         l_random = random.randint(0,26)
@@ -181,7 +183,7 @@ class Curso (): #!!no depende de los otros.
         abc = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
         
         contracenia = f"{nums[n_random]}{abc[l_random]}{nums[n_random]}{abc[l_random]}{nums[n_random]}{abc[l_random]}"
-        return  contracenia
+        return  contracenia      
     
     def Ingresar_archivo(self,nombre,formato):
         nuevo_archivo= Archivo(nombre,formato)
@@ -196,6 +198,7 @@ class Carrera():
         self.__cantidad_materias = cantidad_materias
         self.__alumnos = []
         self.__cursos = []
+
     @property
     def nombre(self):
         return self.__nombre
@@ -260,6 +263,7 @@ def existencia_alumno(mail=str,registrados=list):
         if (obtener_email==mail):
             return True
     return False
+
 #!---------Creacion de Objetos-----------
 lautaro = Estudiante("Lautaro", "Vega", "Lautaro.vega@gmail.com", "2424a", 5858, 2023)
 maria = Estudiante("Maria", "Gomez", "Maria.g@gmail.com", "1234a", 5050, 2022)
@@ -327,4 +331,3 @@ tecnicatura_dos.cursos=prog_tres
 
 tecnicatura_dos.alumnos=lautaro
 tecnicatura_dos.alumnos=maria
-
