@@ -1,4 +1,5 @@
 import random
+from datetime import date
 alumnos_registrados = []
 profesores_registrados = []
 lista_cursos = []
@@ -226,8 +227,8 @@ class Carrera():
 class Archivo():
     def __init__(self, nombre = str, formato = str):
         self.__nombre = nombre
-        self.__fecha = date.today()
         self.__formato = formato
+        self.__fecha = date.today()
         
     def __str__(self):
         return f"Archivo\nNombre = {self.__nombre}\nFecha = {self.__fecha}\nFormato = {self.__formato}\n"
