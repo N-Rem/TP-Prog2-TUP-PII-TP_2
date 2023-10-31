@@ -3,12 +3,7 @@ alumnos_registrados = []
 profesores_registrados = []
 lista_cursos = []
 
-<<<<<<< Updated upstream
-class Usuario(): #!!!---Super clase
-=======
-
 class Usuario(): #!!!---class padre
->>>>>>> Stashed changes
     def __init__(self, nombre=str, apellido=str, email=str, contrasenia=str): #!--- se ponde =str para remarcar que el valor del atributo tiene que ser en este caso String
         self.__nombre = nombre
         self.__apellido = apellido
@@ -71,17 +66,6 @@ class Estudiante(Usuario):
     def __str__(self):
         return "Estudiante: " + super().__str__() + f", Legajo = {self.__legajo}, Año Inscripcion en la Carrera = {self.__anio_inscripcion_carrera}"
 
-<<<<<<< Updated upstream
-    def Matricular_en_curso(self, curso: object, contrasenia=str):
-        if (buscar_curso(curso.get_nombre(), self.__mis_cursos)):  #!!!--- se usa la fun buscar_curso para validar si ya tiene ese curso o no.
-            print(f"Usted ya estaba anotado en {curso.get_nombre()}") #!!!--- curso.get_nombre nos da solo el nombre del curso que ya esta anotado
-        else:
-            if (contrasenia == curso.get_contrasenia()): #!!si la contraseña es igual se agrega el objeto curso a mis_cursos[]
-                self.__mis_cursos.append(curso)
-                print(f"Materia: {curso.get_nombre()} agregada a Mis Cursos..")#!!!--- se informa
-            else:
-                print("Contraseña no valida..")       
-=======
     def Matricular_en_curso(self, curso= object, contrasenia=str):
         if (buscar_curso(curso.nombre, self.__mis_cursos)):  #!!!--- se usa buscar_curso para validar si ya tiene ese curso o no.
             print(f"Usted ya estaba anotado en {curso.nombre}") #!!!--- curso.nombre nos da solo el nombre del curso que ya esta anotado
@@ -120,8 +104,6 @@ class Estudiante(Usuario):
        print (f"\n\n\t\t{curso.nombre}")
        for i in curso.archivos:
            print (i)
-                   
->>>>>>> Stashed changes
 #--
 def buscar_curso(curso=str, lista=list):
     for i in lista:
@@ -135,14 +117,9 @@ class Profesor(Usuario):
         self.__titulo = titulo
         self.__anio_egreso = anio_egreso
         self.__mis_cursos = []
-<<<<<<< Updated upstream
-
-    def get_mis_cursos(self):
-=======
         
     @property
     def mis_cursos(self):
->>>>>>> Stashed changes
         return self.__mis_cursos
     @mis_cursos.setter
     def mis_cursos(self, curso=object):
@@ -157,15 +134,6 @@ class Profesor(Usuario):
         self.__mis_cursos.append(nuevo_curso)
         lista_cursos.append(nuevo_curso)
         print(nuevo_curso)
-<<<<<<< Updated upstream
-# !_____________________
-class Curso (): #!!cursos es un objeto que no depende de los otros. 
-    def __init__(self, nombre=str): #!! solo se le pasa el nombre
-        self.__nombre = nombre
-        self.__contrasenia_matriculacion = self.__generar_contrasenia() #!!! cuando se crea el curso (solo con el nombre) se activa la fun generar_contraceña
-        self.__archivos = [] #!!---Este es para la segunda parte del tp. (ahora Creo que no hay que hacer nada)
-    
-=======
    
 # !_____________________
 class Curso (): #!!no depende de los otros. 
@@ -176,7 +144,6 @@ class Curso (): #!!no depende de los otros.
         self.__archivos = []
         self.__codigo = Curso.__codigo
         Curso.__codigo += 1
->>>>>>> Stashed changes
     #!set, get nombre y archivos
     @property
     def nombre(self):
@@ -184,10 +151,6 @@ class Curso (): #!!no depende de los otros.
     @nombre.setter
     def nombre(self, nombre=str):
         self.__nombre = nombre
-<<<<<<< Updated upstream
-    
-    def get_contrasenia (self):
-=======
     @property
     def codigo(self):
         return self.__codigo
@@ -196,18 +159,13 @@ class Curso (): #!!no depende de los otros.
         self.__codigo = codigo
     @property
     def contrasenia (self):
->>>>>>> Stashed changes
         return self.__contrasenia_matriculacion
     
     @property 
     def archivos(self):
         return self.__archivos
-<<<<<<< Updated upstream
-    def set_archivos(self, archivos =str):
-=======
     @archivos.setter
     def archivos(self, archivos):
->>>>>>> Stashed changes
         self.__archivos.append(archivos)
     #!<------------------------------------
 
@@ -222,11 +180,7 @@ class Curso (): #!!no depende de los otros.
         abc = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
         
         contracenia = f"{nums[n_random]}{abc[l_random]}{nums[n_random]}{abc[l_random]}{nums[n_random]}{abc[l_random]}"
-        return  contracenia      
-<<<<<<< Updated upstream
-# !__________funciones___________
-def mostrar_listas(lista = list): #!!!--------- Muestra los nombres de la lista enumerados para que el usuario elija.
-=======
+        return  contracenia
     
     def Ingresar_archivo(self,nombre,formato):
         nuevo_archivo= Archivo(nombre,formato)
@@ -306,45 +260,6 @@ def existencia_alumno(mail=str,registrados=list):
         if (obtener_email==mail):
             return True
     return False
-<<<<<<< Updated upstream
-
-#!---------Creacion de Objetos-----------Crea Estudiantes/profesores/y cursos y los agrega a la listas (la que estan arriba de todo)
-alumno_uno = Estudiante("Lautaro", "Vega", "Lautaro.vega@gmail.com", "2424a", 5858, 2023)
-alumno_dos = Estudiante("Maria", "Gomez", "Maria.g@gmail.com", "1234a", 5050, 2022)
-alumno_tres = Estudiante("Victoria", "Sosa", "Vicky.ss@gmail.com", "2444a", 3030, 2023)
-alumnos_registrados.append(alumno_uno)
-alumnos_registrados.append(alumno_dos)
-alumnos_registrados.append(alumno_tres)
-
-prof_uno = Profesor("Gustavo", "Ramirez","Gustavo.Ramirez@gmail.com", "3883a", "Ingeniero", 2005)
-prof_dos = Profesor("Bettiana", "Azul","bettiana.123@gmail.com", "1010a", "Ingeniera", 2000)
-prof_tres = Profesor("Veronica", "Zanches","Veronica.z@gmail.com", "5050b", "Ingeniera", 1999)
-profesores_registrados.append(prof_uno)
-profesores_registrados.append(prof_dos)
-profesores_registrados.append(prof_tres)
-
-curso_uno = Curso("Programacion I")
-curso_dos = Curso("Matematicas")
-curso_tres = Curso("Estadistica")
-lista_cursos.append(curso_uno)
-lista_cursos.append(curso_dos)
-lista_cursos.append(curso_tres)
-
-#!!!----- se agrega algunso cursos a algunos profesores y alumos ----
-prof_uno.set_mis_cursos(curso_tres)
-prof_dos.set_mis_cursos(curso_dos)
-prof_tres.set_mis_cursos(curso_uno)
-
-alumno_tres.set_mis_cursos(curso_uno)
-alumno_tres.set_mis_cursos(curso_dos)
-alumno_tres.set_mis_cursos(curso_tres)
-
-# mostrar_mis_cursos(alumnos_registrados, 0)
-# mostrar_mis_cursos(alumnos_registrados,1)
-# mostrar_mis_cursos(alumnos_registrados,2)
-
-# mostrar_mis_cursos(profesores_registrados,0)
-=======
 #!---------Creacion de Objetos-----------
 lautaro = Estudiante("Lautaro", "Vega", "Lautaro.vega@gmail.com", "2424a", 5858, 2023)
 maria = Estudiante("Maria", "Gomez", "Maria.g@gmail.com", "1234a", 5050, 2022)
@@ -413,8 +328,3 @@ tecnicatura_dos.cursos=prog_tres
 tecnicatura_dos.alumnos=lautaro
 tecnicatura_dos.alumnos=maria
 
-
->>>>>>> Stashed changes
-
-# print(alumno_tres.get_email())
-# print(curso_uno)
